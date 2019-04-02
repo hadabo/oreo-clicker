@@ -3,10 +3,10 @@
 a tiny react game bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # ToDo:
-. add basic testing to the code.
-. update the code to modern react.
-. better code splitting.
-. refactore main components
+- add basic testing to the code.
+- update the code to modern react.
+- better code splitting.
+- refactore main components
 
 
 ## Available Scripts
