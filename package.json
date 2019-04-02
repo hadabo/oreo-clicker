@@ -1,0 +1,44 @@
+{
+  "name": "oreo-clicker",
+  "version": "1.0.0",
+  "description": "a tiny react game",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hadabo/oreo-clicker.git"
+  },
+  "keywords": [
+    "react",
+    "game",
+    "oreo",
+    "cookieclicker"
+  ],
+  "author": "Abdul-hadi Hawari <hadabo@gmail.com> (http://hadabo.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hadabo/oreo-clicker/issues"
+  },
+  "homepage": "https://github.com/hadabo/oreo-clicker#readme",
+  "dependencies": {
+    "numeral": "^2.0.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
+    "simple-crypto-js": "^2.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
