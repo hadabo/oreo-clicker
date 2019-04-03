@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Pacifico");
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 body {
   margin: 0;
@@ -9,7 +9,7 @@ body {
 }
 
 .oreo-font {
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   text-shadow: 0 2px 1px #0068b5, 0 3px 1px #00b6f1, 0 6px 1px #41338e,
     -1px -2px 1px #0068b5, 1px -2px 1px #0068b5, 0 -5px 15px #0068b5;
 }
@@ -49,7 +49,7 @@ body {
   overflow-x: scroll;
   position: relative;
   background: #dfb27b;
-  background-image: url("../images/brown-fabric-texture.jpg");
+  background-image: url('../images/brown-fabric-texture.jpg');
 }
 
 .gadgets-side:after {
@@ -61,7 +61,7 @@ body {
   background-position: left center;
   background-repeat: repeat-y;
   background-size: 32px 32px;
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   bottom: 0px;
@@ -125,7 +125,7 @@ body {
   box-shadow: 0 4px 1px #382d2d, 0 6px 1px #5b494b, 0 8px 1px #2e2827,
     0 -2px 5px #19100e, inset 0 -2px 5px #3b2e8e;
   position: relative;
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   font-size: calc(4px + 2vmin);
   line-height: 1;
   text-align: left;
@@ -148,14 +148,14 @@ body {
 
 .icon-pointer {
   background-color: #c1b1ef;
-  background-image: url("../images/pointer.svg");
+  background-image: url('../images/pointer.svg');
   background-size: 130%;
   background-repeat: no-repeat;
 }
 
 .icon-grandma {
   background-color: #feff62;
-  background-image: url("../images/grandma.svg");
+  background-image: url('../images/grandma.svg');
   background-size: 200%;
   background-position: center;
   background-repeat: no-repeat;
@@ -163,7 +163,7 @@ body {
 
 .icon-farm {
   background-color: #62ffad;
-  background-image: url("../images/farm.svg");
+  background-image: url('../images/farm.svg');
   background-size: 85%;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -183,7 +183,7 @@ body {
 }
 
 .message {
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   color: #19100e;
   padding: 10px;
   margin-bottom: 20px;
@@ -217,8 +217,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  font-family: "Pacifico", cursive;
-  font-size: 60%;
+  font-family: 'Pacifico', cursive;
+  font-size: 70%;
   color: #19100e;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 -1px 2px #de922e;
   padding: 10px 0;
@@ -263,17 +263,17 @@ body {
 
 .trophy-start {
   background-color: #c1b1ef;
-  background-image: url("../images/start.svg");
+  background-image: url('../images/start.svg');
 }
 
 .trophy-first-gadget {
   background-color: #feff62;
-  background-image: url("../images/first-gadget.svg");
+  background-image: url('../images/first-gadget.svg');
 }
 
 .trophy-ten-gadgets {
   background-color: #62ffad;
-  background-image: url("../images/ten-gadgets.svg");
+  background-image: url('../images/ten-gadgets.svg');
 }
 
 h2 {
@@ -344,6 +344,13 @@ h2 {
 
   .trophies {
     width: 90%;
+  }
+
+  .notifications-center {
+    width: 76%;
+    bottom: 60%;
+    left: 12%;
+    z-index: 1;
   }
 }
 
