@@ -26,9 +26,7 @@ function getProgress() {
 
 function Oreo() {
   const [state, dispatch] = useReducer(reducer, getProgress() || initialState)
-  const { oreos, speed, gadgets, ticks, messages } = state
-
-  console.log(ticks)
+  const { oreos, speed, gadgets, messages } = state
 
   const automationTimerID = useRef(null)
 
@@ -77,7 +75,6 @@ function Oreo() {
   }
 
   function tick() {
-    console.log('tick-', ticks)
     dispatch({ type: 'TICK' })
     dispatch({ type: 'SAVE_PROGRESS' })
   }
