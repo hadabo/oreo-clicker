@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/oreo-clicker/static/media/pointer.c1dffbd2.svg"
   },
   {
-    "revision": "63a9cbf895d5ead0883eca23b8f4c96d",
-    "url": "/oreo-clicker/static/media/farm.63a9cbf8.svg"
-  },
-  {
     "revision": "73ad4e18a6dac640299b4b76637c500a",
     "url": "/oreo-clicker/static/media/start.73ad4e18.svg"
+  },
+  {
+    "revision": "63a9cbf895d5ead0883eca23b8f4c96d",
+    "url": "/oreo-clicker/static/media/farm.63a9cbf8.svg"
   },
   {
     "revision": "780ffc464369a0c48408",
