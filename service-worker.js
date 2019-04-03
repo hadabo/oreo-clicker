@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hadabo/oreo-clicker/precache-manifest.0d94a2e08329f20c33a4ecda5d51c293.js"
+  "/oreo-clicker/precache-manifest.79844644e197d32196089d34d8ba0607.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/hadabo/oreo-clicker/index.html", {
+workbox.routing.registerNavigationRoute("/oreo-clicker/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
