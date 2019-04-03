@@ -1,5 +1,6 @@
 import crepto from './helpers/crypto'
-export default function reducer(state, action) {
+
+function reducer(state, action) {
   switch (action.type) {
     case 'GET_OREO':
       return {
@@ -79,10 +80,17 @@ export default function reducer(state, action) {
   }
 
   function saveProgress(state) {
-    const progrees = JSON.stringify(state)
-    // const encryptedProgress = progrees
+    const newMessage = {
+      type: 'info',
+      text: `Click on the big OREO biscuit to resume :)`,
+      time: 0,
+    }
+    const stateWithoutMessages = { ...state, messages: [newMessage] }
+    const progrees = JSON.stringify(stateWithoutMessages)
     const encryptedProgress = crepto('encrypt', progrees)
 
     window.localStorage.setItem('progrees', encryptedProgress)
   }
 }
+
+export default reducer

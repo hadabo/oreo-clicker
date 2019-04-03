@@ -27,7 +27,13 @@
       "count": 0
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "type": "info",
+      "text": "Click on the big OREO biscuit to Start :)",
+      "time": 0
+    }
+  ],
   "autoSaveTimeout": 5,
   "trophies": [
     {
