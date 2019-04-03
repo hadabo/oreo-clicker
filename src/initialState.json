@@ -3,6 +3,7 @@
   "clicks": 0,
   "gadgetsCount": 0,
   "ticks": 0,
+  "speed": 0,
   "gadgets": [
     {
       "type": "pointer",
@@ -27,7 +28,7 @@
     }
   ],
   "messages": [],
-  "autoSaveTimeout": 60,
+  "autoSaveTimeout": 5,
   "trophies": [
     {
       "type": "start",
