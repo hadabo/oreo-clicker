@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "b92c37ee5f2c3982e66b2c60489fe3d7",
-    "url": "/oreo-clicker/static/media/first-gadget.b92c37ee.svg"
+    "revision": "3df05eb1b799b62e077a407939e50614",
+    "url": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg"
   },
   {
-    "revision": "780ffc464369a0c48408",
-    "url": "/oreo-clicker/static/css/main.86b08c1e.chunk.css"
+    "revision": "1ea9203034a2c1997973",
+    "url": "/oreo-clicker/static/css/main.9e646cf1.chunk.css"
   },
   {
     "revision": "06616b77430593ae4208",
@@ -16,24 +16,24 @@ self.__precacheManifest = [
     "url": "/oreo-clicker/static/js/2.2a26b805.chunk.js"
   },
   {
-    "revision": "c1dffbd20ce6a19f7a21e3eaca145cba",
-    "url": "/oreo-clicker/static/media/pointer.c1dffbd2.svg"
-  },
-  {
     "revision": "73ad4e18a6dac640299b4b76637c500a",
     "url": "/oreo-clicker/static/media/start.73ad4e18.svg"
+  },
+  {
+    "revision": "c1dffbd20ce6a19f7a21e3eaca145cba",
+    "url": "/oreo-clicker/static/media/pointer.c1dffbd2.svg"
   },
   {
     "revision": "63a9cbf895d5ead0883eca23b8f4c96d",
     "url": "/oreo-clicker/static/media/farm.63a9cbf8.svg"
   },
   {
-    "revision": "780ffc464369a0c48408",
+    "revision": "1ea9203034a2c1997973",
     "url": "/oreo-clicker/static/js/main.20ea2199.chunk.js"
   },
   {
-    "revision": "3df05eb1b799b62e077a407939e50614",
-    "url": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg"
+    "revision": "b92c37ee5f2c3982e66b2c60489fe3d7",
+    "url": "/oreo-clicker/static/media/first-gadget.b92c37ee.svg"
   },
   {
     "revision": "65cd9a94928fc20658b9d2693f3b61a2",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/oreo-clicker/static/media/oreo.6eb78e8a.png"
   },
   {
-    "revision": "e6459c839b168772a81564f757586148",
+    "revision": "3e57cf6291b4eeccece3ca3d1bf36a76",
     "url": "/oreo-clicker/index.html"
   }
 ];

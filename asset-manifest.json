@@ -1,5 +1,5 @@
 {
-  "main.css": "/oreo-clicker/static/css/main.86b08c1e.chunk.css",
+  "main.css": "/oreo-clicker/static/css/main.9e646cf1.chunk.css",
   "main.js": "/oreo-clicker/static/js/main.20ea2199.chunk.js",
   "main.js.map": "/oreo-clicker/static/js/main.20ea2199.chunk.js.map",
   "runtime~main.js": "/oreo-clicker/static/js/runtime~main.600750ad.js",
@@ -7,9 +7,9 @@
   "static/js/2.2a26b805.chunk.js": "/oreo-clicker/static/js/2.2a26b805.chunk.js",
   "static/js/2.2a26b805.chunk.js.map": "/oreo-clicker/static/js/2.2a26b805.chunk.js.map",
   "index.html": "/oreo-clicker/index.html",
-  "precache-manifest.fc9f24c9f85240d2fa4e110bfdf8cb94.js": "/oreo-clicker/precache-manifest.fc9f24c9f85240d2fa4e110bfdf8cb94.js",
+  "precache-manifest.eae2083c544fac4c1fd2e78a7a56d349.js": "/oreo-clicker/precache-manifest.eae2083c544fac4c1fd2e78a7a56d349.js",
   "service-worker.js": "/oreo-clicker/service-worker.js",
-  "static/css/main.86b08c1e.chunk.css.map": "/oreo-clicker/static/css/main.86b08c1e.chunk.css.map",
+  "static/css/main.9e646cf1.chunk.css.map": "/oreo-clicker/static/css/main.9e646cf1.chunk.css.map",
   "static/media/game.css": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg",
   "static/media/oreo-logo.png": "/oreo-clicker/static/media/oreo-logo.6e871b98.png",
   "static/media/oreo.png": "/oreo-clicker/static/media/oreo.6eb78e8a.png"

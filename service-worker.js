@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/oreo-clicker/precache-manifest.fc9f24c9f85240d2fa4e110bfdf8cb94.js"
+  "/oreo-clicker/precache-manifest.eae2083c544fac4c1fd2e78a7a56d349.js"
 );
 
 workbox.clientsClaim();
