@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "3df05eb1b799b62e077a407939e50614",
-    "url": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg"
+    "revision": "b92c37ee5f2c3982e66b2c60489fe3d7",
+    "url": "/oreo-clicker/static/media/first-gadget.b92c37ee.svg"
   },
   {
-    "revision": "1ea9203034a2c1997973",
+    "revision": "d9412c4d56287dd3017a",
     "url": "/oreo-clicker/static/css/main.9e646cf1.chunk.css"
   },
   {
@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/oreo-clicker/static/media/farm.63a9cbf8.svg"
   },
   {
-    "revision": "1ea9203034a2c1997973",
-    "url": "/oreo-clicker/static/js/main.20ea2199.chunk.js"
+    "revision": "d9412c4d56287dd3017a",
+    "url": "/oreo-clicker/static/js/main.032b342a.chunk.js"
   },
   {
-    "revision": "b92c37ee5f2c3982e66b2c60489fe3d7",
-    "url": "/oreo-clicker/static/media/first-gadget.b92c37ee.svg"
+    "revision": "3df05eb1b799b62e077a407939e50614",
+    "url": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg"
   },
   {
     "revision": "65cd9a94928fc20658b9d2693f3b61a2",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/oreo-clicker/static/media/oreo.6eb78e8a.png"
   },
   {
-    "revision": "3e57cf6291b4eeccece3ca3d1bf36a76",
+    "revision": "9e18ec17187fa1182894be466d061ab1",
     "url": "/oreo-clicker/index.html"
   }
 ];
