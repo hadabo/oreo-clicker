@@ -1,5 +1,7 @@
 # oreoClicker
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hadabo/oreo-clicker.svg)](https://greenkeeper.io/)
+
 a tiny react game bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # ToDo:
