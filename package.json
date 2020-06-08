@@ -18,14 +18,17 @@
   "bugs": {
     "url": "https://github.com/hadabo/oreo-clicker/issues"
   },
-  "homepage": "https://hadabo.github.io/oreo-clicker",
+  "homepage": "http://www.superfkra.com",
   "dependencies": {
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^3.0.0",
     "numeral": "^2.0.6",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
-    "simple-crypto-js": "^2.0.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "simple-crypto-js": "^3.0.0"
+  },
+  "devDependencies": {
+    "surge": "^0.21.3"
   },
   "scripts": {
     "start": "react-scripts start",
