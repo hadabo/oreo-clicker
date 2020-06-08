@@ -7,24 +7,31 @@
   "gadgets": [
     {
       "type": "pointer",
-      "cost": 10,
+      "cost": 5,
       "inflation": 1.2,
-      "speed": 0.1,
+      "speed": 1,
       "count": 0
     },
     {
       "type": "grandma",
-      "cost": 100,
+      "cost": 50,
       "inflation": 1.2,
-      "speed": 1,
+      "speed": 12,
       "count": 0
     },
     {
       "type": "farm",
       "cost": 250,
       "inflation": 1.2,
-      "speed": 7,
+      "speed": 75,
       "count": 0
+    },
+    {
+      "type": "factory",
+      "cost": 500,
+      "inflation": 1.2,
+      "speed": 200,
+      "count": 10
     }
   ],
   "messages": [
