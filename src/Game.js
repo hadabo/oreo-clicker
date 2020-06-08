@@ -1,4 +1,4 @@
-import React, { Suspense, useReducer, useRef, useEffect } from 'react'
+import React, { Suspense, useReducer, useRef } from 'react'
 import GadgetsList from './components/GadgetsList'
 import Header from './components/Header'
 import OreoBiscuit from './components/OreoBiscuit'
@@ -16,9 +16,15 @@ import './assets/style/game.css'
 function getProgress() {
   if (window.localStorage.getItem('progrees')) {
     const encryptedProgress = window.localStorage.getItem('progrees')
-    const progress = crepto('decrypt', encryptedProgress)
+    let progress = initialState
 
-    return JSON.parse(progress)
+    try {
+      progress = crepto('decrypt', encryptedProgress)
+    } catch (error) {
+      console.error(error)
+    }
+
+    return progress
   }
 
   return null
@@ -43,7 +49,7 @@ function Oreo() {
     if (!automationTimerID.current) automate()
 
     const requestedGadgetIndex = gadgets.findIndex(
-      gadget => gadget.type === type
+      (gadget) => gadget.type === type
     )
 
     const requestedGadget = gadgets[requestedGadgetIndex]
