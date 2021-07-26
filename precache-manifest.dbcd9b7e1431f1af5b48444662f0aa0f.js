@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "afe6a7278fafc49485f25d5e55f269a8",
+    "revision": "29939a1ae8e1907b2cd31f341ed39f12",
     "url": "/oreo-clicker/index.html"
   },
   {
-    "revision": "fe0f27c7a5cf9b1d03d1",
+    "revision": "c88b7bc761b53a355378",
     "url": "/oreo-clicker/static/css/main.a674296d.chunk.css"
   },
   {
-    "revision": "32573bacc7e5c148af6c",
-    "url": "/oreo-clicker/static/js/2.e3487b0c.chunk.js"
+    "revision": "30a0ee74d83810edf6b9",
+    "url": "/oreo-clicker/static/js/2.008d55ad.chunk.js"
   },
   {
     "revision": "698735a8bb41d3e9a4abb45cf9b30380",
-    "url": "/oreo-clicker/static/js/2.e3487b0c.chunk.js.LICENSE.txt"
+    "url": "/oreo-clicker/static/js/2.008d55ad.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fe0f27c7a5cf9b1d03d1",
-    "url": "/oreo-clicker/static/js/main.b9874efa.chunk.js"
+    "revision": "c88b7bc761b53a355378",
+    "url": "/oreo-clicker/static/js/main.718e6688.chunk.js"
   },
   {
     "revision": "353852348b9076cc2774",
