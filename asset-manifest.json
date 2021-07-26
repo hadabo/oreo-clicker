@@ -1,16 +1,25 @@
 {
-  "main.css": "/oreo-clicker/static/css/main.9e646cf1.chunk.css",
-  "main.js": "/oreo-clicker/static/js/main.032b342a.chunk.js",
-  "main.js.map": "/oreo-clicker/static/js/main.032b342a.chunk.js.map",
-  "runtime~main.js": "/oreo-clicker/static/js/runtime~main.600750ad.js",
-  "runtime~main.js.map": "/oreo-clicker/static/js/runtime~main.600750ad.js.map",
-  "static/js/2.2a26b805.chunk.js": "/oreo-clicker/static/js/2.2a26b805.chunk.js",
-  "static/js/2.2a26b805.chunk.js.map": "/oreo-clicker/static/js/2.2a26b805.chunk.js.map",
-  "index.html": "/oreo-clicker/index.html",
-  "precache-manifest.75b29c824aefc3acdac664f3577844c2.js": "/oreo-clicker/precache-manifest.75b29c824aefc3acdac664f3577844c2.js",
-  "service-worker.js": "/oreo-clicker/service-worker.js",
-  "static/css/main.9e646cf1.chunk.css.map": "/oreo-clicker/static/css/main.9e646cf1.chunk.css.map",
-  "static/media/game.css": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg",
-  "static/media/oreo-logo.png": "/oreo-clicker/static/media/oreo-logo.6e871b98.png",
-  "static/media/oreo.png": "/oreo-clicker/static/media/oreo.6eb78e8a.png"
+  "files": {
+    "main.css": "/oreo-clicker/static/css/main.a674296d.chunk.css",
+    "main.js": "/oreo-clicker/static/js/main.718e6688.chunk.js",
+    "main.js.map": "/oreo-clicker/static/js/main.718e6688.chunk.js.map",
+    "runtime-main.js": "/oreo-clicker/static/js/runtime-main.158ec469.js",
+    "runtime-main.js.map": "/oreo-clicker/static/js/runtime-main.158ec469.js.map",
+    "static/js/2.008d55ad.chunk.js": "/oreo-clicker/static/js/2.008d55ad.chunk.js",
+    "static/js/2.008d55ad.chunk.js.map": "/oreo-clicker/static/js/2.008d55ad.chunk.js.map",
+    "index.html": "/oreo-clicker/index.html",
+    "precache-manifest.dbcd9b7e1431f1af5b48444662f0aa0f.js": "/oreo-clicker/precache-manifest.dbcd9b7e1431f1af5b48444662f0aa0f.js",
+    "service-worker.js": "/oreo-clicker/service-worker.js",
+    "static/css/main.a674296d.chunk.css.map": "/oreo-clicker/static/css/main.a674296d.chunk.css.map",
+    "static/js/2.008d55ad.chunk.js.LICENSE.txt": "/oreo-clicker/static/js/2.008d55ad.chunk.js.LICENSE.txt",
+    "static/media/game.css": "/oreo-clicker/static/media/ten-gadgets.3df05eb1.svg",
+    "static/media/oreo-logo.png": "/oreo-clicker/static/media/oreo-logo.6e871b98.png",
+    "static/media/oreo.png": "/oreo-clicker/static/media/oreo.6eb78e8a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.158ec469.js",
+    "static/js/2.008d55ad.chunk.js",
+    "static/css/main.a674296d.chunk.css",
+    "static/js/main.718e6688.chunk.js"
+  ]
 }

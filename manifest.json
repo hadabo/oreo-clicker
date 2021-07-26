@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "https://hadabo.github.io/oreo-clicker/",
+  "start_url": "http://hadabo.github.io/oreo-clicker",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
