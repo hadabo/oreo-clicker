@@ -10,7 +10,7 @@ script:
 deploy:
   provider: surge
   skip_cleanup: true
-  domain: www.superfkra.com
+  domain: http://hadabo.github.io/oreo-clicker
   project: ./build/
 on:
   branch: master
