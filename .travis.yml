@@ -5,12 +5,9 @@ cache:
   directories:
     - node_modules
 script:
-  # - yarn test
+  - yarn test
   - yarn build
 deploy:
-  provider: surge
-  skip_cleanup: true
-  domain: http://hadabo.github.io/oreo-clicker
-  project: ./build/
+  - yarn deploy
 on:
   branch: master
