@@ -12,6 +12,7 @@ import PrestigeButton from './components/PrestigeButton'
 import PrestigeShop from './components/PrestigeShop'
 import GoldenOreo from './components/GoldenOreo'
 import ComboIndicator from './components/ComboIndicator'
+import SectionHeader from './components/SectionHeader'
 
 // Import lazy-loaded components
 import { LazyGadgetsList, LazyTrophies, LazyStats } from './components/LazyLoadedComponents'
@@ -131,40 +132,86 @@ function Oreo() {
       <div className={`oreo-clicker ${!settings.animationsEnabled ? 'animations-disabled' : ''}`}>
         <GoldenOreo state={state} onCollect={handleGoldenOreoCollect} />
         <ComboIndicator comboCount={state.combo || 0} onComboBreak={actions.breakCombo} />
+        
+        {/* Top Bar - Header and Settings */}
+        <div className="top-bar">
+          <Header />
+          <Settings onImportSave={() => window.location.reload()} initialState={initialState} />
+        </div>
+        
         <div className="oreo-bg">
+          {/* Left Side - Main Clicker Area */}
           <div className="biscuit-side">
-            <div>
-              <Header />
+            <div className="clicker-area">
               <OreoBiscuit getOreo={handleOreoClick} />
-              <Counter oreos={oreos} />
-              <Speed speed={speed} />
+              
+              {/* Stats under the oreo */}
+              <div className="main-stats">
+                <Counter oreos={oreos} />
+                <Speed speed={speed} />
+              </div>
+              
+              {/* Prestige section - prominent position */}
+              <ErrorBoundary>
+                <PrestigeButton state={state} onPrestige={handlePrestige} />
+              </ErrorBoundary>
             </div>
           </div>
+          
           <Notifications messages={messages} />
+          
+          {/* Right Side - Shop and Progress */}
           <div className="gadgets-side">
-            <Settings onImportSave={() => window.location.reload()} initialState={initialState} />
-            <ErrorBoundary>
-              <PrestigeButton state={state} onPrestige={handlePrestige} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <PrestigeShop 
-                prestige={state.prestige} 
-                prestigeUpgrades={state.prestigeUpgrades}
-                onPurchase={handleBuyPrestigeUpgrade}
-              />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <ProgressIndicator state={state} unlockedAchievements={achievements.unlockedAchievements} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <LazyStats state={state} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <LazyGadgetsList buyGadget={handleBuyGadget} gadgets={gadgets} />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <LazyTrophies state={state} unlockedAchievements={achievements.unlockedAchievements} />
-            </ErrorBoundary>
+            <div className="shop-container">
+              {/* Prestige Upgrades Section */}
+              <ErrorBoundary>
+                <PrestigeShop 
+                  prestige={state.prestige} 
+                  prestigeUpgrades={state.prestigeUpgrades}
+                  onPurchase={handleBuyPrestigeUpgrade}
+                />
+              </ErrorBoundary>
+              
+              {/* Gadgets Shop Section */}
+              <div className="gadgets-shop-section">
+                <SectionHeader 
+                  icon="🏪" 
+                  title="Gadgets Shop" 
+                  subtitle="Automate your Oreo production"
+                />
+                <ErrorBoundary>
+                  <LazyGadgetsList buyGadget={handleBuyGadget} gadgets={gadgets} />
+                </ErrorBoundary>
+              </div>
+              
+              {/* Progress and Achievements Section */}
+              <div className="progress-section">
+                <SectionHeader 
+                  icon="🎯" 
+                  title="Progress & Achievements" 
+                  subtitle="Track your milestones"
+                />
+                <ErrorBoundary>
+                  <ProgressIndicator state={state} unlockedAchievements={achievements.unlockedAchievements} />
+                </ErrorBoundary>
+                
+                <ErrorBoundary>
+                  <LazyTrophies state={state} unlockedAchievements={achievements.unlockedAchievements} />
+                </ErrorBoundary>
+              </div>
+              
+              {/* Statistics Section */}
+              <div className="stats-section">
+                <SectionHeader 
+                  icon="📊" 
+                  title="Statistics" 
+                  subtitle="Your game stats"
+                />
+                <ErrorBoundary>
+                  <LazyStats state={state} />
+                </ErrorBoundary>
+              </div>
+            </div>
           </div>
         </div>
       </div>

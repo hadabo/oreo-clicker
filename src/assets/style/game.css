@@ -16,6 +16,22 @@ body {
 
 .oreo-clicker {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Bar - Header and Settings */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #011ca7 0%, #0068b5 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .oreo-bg {
@@ -23,19 +39,18 @@ body {
   background-image: radial-gradient(circle, #01ffff 10%, #011ca7 80%);
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 100vh;
+  flex: 1;
+  min-height: calc(100vh - 80px);
 }
 
 .biscuit-side,
 .gadgets-side {
   width: 50%;
-  height: 100%;
   box-sizing: border-box;
-  /* padding: 1vw 1vh; */
   background-image: radial-gradient(circle, #01ffff 10%, #011ca7 80%);
 }
 
@@ -43,10 +58,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.clicker-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.main-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .gadgets-side {
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
   background: #dfb27b;
   background-image: url('../images/brown-fabric-texture.jpg');
@@ -1854,5 +1887,579 @@ h2 {
   .combo-multiplier {
     font-size: 14px;
     padding: 3px 10px;
+  }
+}
+
+/* Shop Container and Sections */
+.shop-container {
+  padding: 20px;
+}
+
+.progress-section {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Improved component spacing */
+.shop-container > * {
+  margin-bottom: 25px;
+}
+
+.shop-container > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Section headers */
+.shop-container h2,
+.shop-container h3 {
+  font-family: 'Pacifico', cursive;
+  color: #423939;
+  margin-top: 0;
+}
+
+/* Better visual separation */
+.prestige-shop,
+.gadgets-list,
+.progress-indicator,
+.trophies,
+.stats {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Sticky prestige button when scrolling */
+.prestige-button-container {
+  position: sticky;
+  top: 10px;
+  z-index: 50;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   COMPREHENSIVE MOBILE RESPONSIVE LAYOUT
+   ======================================== */
+
+@media only screen and (max-width: 900px) {
+  /* Top bar adjustments for tablets */
+  .top-bar {
+    padding: 8px 15px;
+  }
+  
+  .logo {
+    width: 200px;
+    margin: 20px auto;
+  }
+  
+  /* Adjust oreo size */
+  .oreo-biscuit {
+    height: 35vmin;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  /* Stack layout vertically on mobile */
+  .oreo-bg {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .top-bar {
+    padding: 5px 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .biscuit-side,
+  .gadgets-side {
+    width: 100%;
+    min-height: auto;
+  }
+  
+  /* Clicker area - top section on mobile */
+  .biscuit-side {
+    min-height: calc(100vh - 60px);
+    padding: 20px 10px;
+  }
+  
+  .clicker-area {
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  .oreo-biscuit {
+    height: 45vmin;
+    max-height: 300px;
+  }
+  
+  .main-stats {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  /* Shop section scrollable */
+  .gadgets-side {
+    max-height: none;
+    min-height: 100vh;
+  }
+  
+  .gadgets-side:after {
+    display: none; /* Remove decorative border on mobile */
+  }
+  
+  .shop-container {
+    padding: 15px;
+  }
+  
+  .shop-container > * {
+    margin-bottom: 20px;
+  }
+  
+  /* Compact prestige button */
+  .prestige-button-container {
+    position: relative;
+    top: 0;
+    margin: 15px 0;
+  }
+  
+  .prestige-button {
+    padding: 15px;
+  }
+  
+  /* Compact sections */
+  .prestige-shop,
+  .gadgets-list,
+  .progress-indicator,
+  .trophies,
+  .stats {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  /* Logo smaller on mobile */
+  .logo {
+    width: 180px;
+    margin: 15px auto;
+  }
+  
+  .logo span {
+    font-size: 14px;
+    bottom: 25px;
+  }
+  
+  /* Header adjustments */
+  .header-title {
+    font-size: 20px;
+  }
+  
+  /* Counter and Speed compact */
+  .counter,
+  .speed {
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+  
+  /* Progress section stacked */
+  .progress-section {
+    gap: 15px;
+  }
+  
+  /* Notifications positioned better on mobile */
+  .notifications {
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* Extra small phones */
+  .top-bar {
+    padding: 5px;
+  }
+  
+  .logo {
+    width: 150px;
+    margin: 10px auto;
+  }
+  
+  .oreo-biscuit {
+    height: 40vmin;
+    max-height: 250px;
+  }
+  
+  .shop-container {
+    padding: 10px;
+  }
+  
+  .prestige-shop,
+  .gadgets-list {
+    padding: 12px;
+  }
+  
+  /* Smaller text */
+  .counter,
+  .speed {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+}
+
+/* Landscape mode on mobile */
+@media only screen and (max-width: 900px) and (orientation: landscape) {
+  .oreo-bg {
+    flex-direction: row;
+  }
+  
+  .biscuit-side,
+  .gadgets-side {
+    width: 50%;
+    height: calc(100vh - 60px);
+  }
+  
+  .biscuit-side {
+    min-height: auto;
+  }
+  
+  .gadgets-side {
+    overflow-y: auto;
+  }
+  
+  .oreo-biscuit {
+    height: 30vh;
+    max-height: 200px;
+  }
+  
+  .clicker-area {
+    gap: 10px;
+  }
+  
+  .main-stats {
+    padding: 0 10px;
+  }
+}
+
+/* Header in Top Bar */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.header-title {
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Old logo style - keep for backward compatibility */
+.logo {
+  position: relative;
+  width: 250px;
+  margin: 20px auto;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 749px) {
+  .header-logo img {
+    height: 32px;
+  }
+  
+  .header-title {
+    font-size: 20px;
+  }
+}
+
+/* Visual Hierarchy & Section Improvements */
+
+/* Better visual separation between sections */
+.shop-container > .prestige-shop {
+  border: 3px solid #ffd700;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+}
+
+.shop-container > .gadgets-list {
+  background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+  border: 2px solid #ddd;
+}
+
+/* Section titles more prominent */
+.gadgets-list h2,
+.stats h3,
+.trophies h3 {
+  color: #0068b5;
+  border-bottom: 3px solid #0068b5;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* Make important actions stand out */
+.prestige-button {
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  border: 3px solid #ffd700;
+}
+
+.prestige-button:hover {
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Smooth scrolling for shop side */
+.gadgets-side {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for accessibility */
+.settings-toggle:focus,
+.prestige-button:focus,
+.buy-upgrade-btn:focus {
+  outline: 3px solid #0068b5;
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.shop-container > * {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Improve readability */
+.counter,
+.speed {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Better prestige stats visibility */
+.prestige-stats {
+  background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
+  border: 2px solid #ffd700;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 15px;
+  font-family: 'Pacifico', cursive;
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2);
+}
+
+/* Empty state messages */
+.prestige-shop-locked,
+.empty-state {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Section Header Styles */
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #0068b5 0%, #011ca7 100%);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.section-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.section-title-group {
+  flex: 1;
+  text-align: left;
+}
+
+.section-title {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-subtitle {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Pacifico', cursive;
+}
+
+@media only screen and (max-width: 749px) {
+  .section-header-content {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .section-icon {
+    font-size: 28px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .section-subtitle {
+    font-size: 12px;
+  }
+}
+/* Additional Layout Improvements */
+
+/* Better spacing for clicker area */
+.clicker-area {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Improve counter and speed cards */
+.counter,
+.speed {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Better section spacing */
+.gadgets-shop-section,
+.progress-section,
+.stats-section {
+  margin-bottom: 30px;
+}
+
+/* Improve prestige button in clicker area */
+.clicker-area .prestige-button-container {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  top: 0;
+}
+
+/* Smooth transitions */
+.prestige-shop,
+.gadgets-list,
+.progress-indicator,
+.trophies,
+.stats {
+  transition: all 0.3s ease;
+}
+
+.prestige-shop:hover,
+.gadgets-list:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Better visual flow */
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Combo indicator better positioned for new layout */
+.combo-indicator {
+  right: 60px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .combo-indicator {
+    right: 30px;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .combo-indicator {
+    right: 20px;
+    bottom: 100px;
+  }
+  
+  /* Better spacing on mobile */
+  .shop-container {
+    gap: 20px;
+  }
+  
+  .gadgets-shop-section,
+  .progress-section,
+  .stats-section {
+    margin-bottom: 20px;
+  }
+}
+
+/* Scrollbar styling for gadgets side */
+.gadgets-side::-webkit-scrollbar {
+  width: 10px;
+}
+
+.gadgets-side::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.gadgets-side::-webkit-scrollbar-thumb {
+  background: rgba(0, 104, 181, 0.5);
+  border-radius: 5px;
+}
+
+.gadgets-side::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 104, 181, 0.7);
+}
+
+/* Improve prestige stats in button */
+.prestige-stats {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Better notification positioning for new layout */
+.notifications {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  max-width: 400px;
+  width: 90%;
+}
+
+@media only screen and (max-width: 749px) {
+  .notifications {
+    bottom: 10px;
+    max-width: 350px;
   }
 }

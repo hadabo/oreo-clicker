@@ -3,9 +3,9 @@ import oreoLogo from '../assets/images/oreo-logo.png'
 
 function Header() {
   return (
-    <div className="logo oreo-font">
+    <div className="header-logo oreo-font">
       <img src={oreoLogo} className="oreo-logo" alt="oreo logo" />
-      <span>Clicker!</span>
+      <span className="header-title">Clicker!</span>
     </div>
   )
 }
