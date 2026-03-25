@@ -90,6 +90,7 @@ function reducer(state, action) {
         }],
         prestige: newPrestigeState,
         prestigeUpgrades: keptUpgrades,
+        goldenOreosCollected: state.goldenOreosCollected || 0,
         trophies: state.trophies,
         autoSaveTimeout: state.autoSaveTimeout
       }
@@ -124,6 +125,21 @@ function reducer(state, action) {
       
       saveProgress(stateWithUpgrade)
       return stateWithUpgrade
+
+    case 'COLLECT_GOLDEN_OREO':
+      const goldenBonus = action.payload.bonus
+      const stateWithBonus = {
+        ...state,
+        oreos: state.oreos + goldenBonus,
+        goldenOreosCollected: (state.goldenOreosCollected || 0) + 1,
+        messages: [...state.messages, {
+          type: 'success',
+          text: `Golden Oreo! +${goldenBonus} Oreos!`,
+          time: 5
+        }]
+      }
+      
+      return stateWithBonus
 
     default:
       return state

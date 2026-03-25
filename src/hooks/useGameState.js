@@ -69,6 +69,13 @@ export function useGameState(initialState) {
     })
   }, [dispatch])
 
+  const collectGoldenOreo = useCallback((bonus) => {
+    dispatch({
+      type: 'COLLECT_GOLDEN_OREO',
+      payload: { bonus }
+    })
+  }, [dispatch])
+
   return {
     state,
     actions: {
@@ -76,7 +83,8 @@ export function useGameState(initialState) {
       buyGadget,
       tick,
       prestige,
-      buyPrestigeUpgrade
+      buyPrestigeUpgrade,
+      collectGoldenOreo
     }
   }
 }

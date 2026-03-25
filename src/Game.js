@@ -10,6 +10,7 @@ import Settings from './components/Settings'
 import ProgressIndicator from './components/ProgressIndicator'
 import PrestigeButton from './components/PrestigeButton'
 import PrestigeShop from './components/PrestigeShop'
+import GoldenOreo from './components/GoldenOreo'
 
 // Import lazy-loaded components
 import { LazyGadgetsList, LazyTrophies, LazyStats } from './components/LazyLoadedComponents'
@@ -118,9 +119,16 @@ function Oreo() {
     announce(`Purchased ${upgrade.name}!`)
   }
 
+  const handleGoldenOreoCollect = (bonus) => {
+    actions.collectGoldenOreo(bonus)
+    playSound('achievement')
+    announce(`Golden Oreo collected! +${bonus} Oreos!`)
+  }
+
   return (
     <ErrorBoundary>
       <div className={`oreo-clicker ${!settings.animationsEnabled ? 'animations-disabled' : ''}`}>
+        <GoldenOreo state={state} onCollect={handleGoldenOreoCollect} />
         <div className="oreo-bg">
           <div className="biscuit-side">
             <div>

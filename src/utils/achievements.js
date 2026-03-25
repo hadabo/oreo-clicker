@@ -68,6 +68,27 @@ export const ACHIEVEMENTS = [
     description: 'Own 5 prestige upgrades',
     condition: (state) => (state.prestigeUpgrades?.length || 0) >= 5,
     icon: '🎁'
+  },
+  {
+    id: 'first_golden',
+    name: 'Golden Touch',
+    description: 'Collect your first Golden Oreo',
+    condition: (state) => (state.goldenOreosCollected || 0) >= 1,
+    icon: '🥇'
+  },
+  {
+    id: 'golden_hunter',
+    name: 'Golden Hunter',
+    description: 'Collect 10 Golden Oreos',
+    condition: (state) => (state.goldenOreosCollected || 0) >= 10,
+    icon: '🏅'
+  },
+  {
+    id: 'million_oreos',
+    name: 'Oreo Millionaire',
+    description: 'Collect 1,000,000 Oreos',
+    condition: (state) => state.oreos >= 1000000,
+    icon: '💰'
   }
 ]
 

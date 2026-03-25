@@ -1667,3 +1667,86 @@ h2 {
     width: 100%;
   }
 }
+
+/* Golden Oreo Styles */
+.golden-oreo {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 999;
+  animation: goldenPulse 1s ease-in-out infinite, goldenFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+  transition: transform 0.2s ease;
+}
+
+.golden-oreo:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.golden-oreo-icon {
+  font-size: 60px;
+  text-align: center;
+  animation: goldenSpin 4s linear infinite;
+}
+
+.golden-oreo-multiplier {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #423939;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
+  white-space: nowrap;
+}
+
+@keyframes goldenPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(255, 215, 0, 1));
+  }
+}
+
+@keyframes goldenFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
+
+@keyframes goldenSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsive for golden oreo */
+@media only screen and (max-width: 749px) {
+  .golden-oreo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .golden-oreo-icon {
+    font-size: 45px;
+  }
+  
+  .golden-oreo-multiplier {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+}

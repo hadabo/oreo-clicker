@@ -77,6 +77,7 @@
     "multiplier": 1.0
   },
   "prestigeUpgrades": [],
+  "goldenOreosCollected": 0,
   "trophies": [
     {
       "type": "start",
