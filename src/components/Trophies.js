@@ -7,7 +7,6 @@ export default function Trophies({ state, unlockedAchievements = [] }) {
   const { settings } = useSettings()
   const [confettiTrigger, setConfettiTrigger] = useState(0)
   const [previousCount, setPreviousCount] = useState(0)
-  const [expandedId, setExpandedId] = useState(null)
   
   const unlockedTrophies = ACHIEVEMENTS.filter(achievement => 
     unlockedAchievements.includes(achievement.id)
@@ -24,63 +23,28 @@ export default function Trophies({ state, unlockedAchievements = [] }) {
   }, [unlockedTrophies.length, previousCount, settings.animationsEnabled])
   
   if (unlockedTrophies.length === 0) {
-    return (
-      <div className="trophies-center">
-        <div className="trophies-empty">
-          <div className="empty-icon">🏆</div>
-          <p>No achievements unlocked yet!</p>
-          <small>Start clicking to earn your first trophy</small>
-        </div>
-      </div>
-    )
+    return null
   }
   
   return (
     <div className="trophies-center">
+      <h2 className="oreo-font">Trophies ({unlockedTrophies.length}/{ACHIEVEMENTS.length})</h2>
       {settings.animationsEnabled && <Confetti trigger={confettiTrigger} />}
-      
-      <div className="trophies-header">
-        <div className="trophies-count">
-          <span className="count-number">{unlockedTrophies.length}</span>
-          <span className="count-label">Achievement{unlockedTrophies.length !== 1 ? 's' : ''}</span>
-        </div>
-        <div className="trophies-progress">
-          <div className="progress-bar">
-            <div 
-              className="progress-fill" 
-              style={{ width: `${(unlockedTrophies.length / ACHIEVEMENTS.length) * 100}%` }}
-            />
-          </div>
-          <span className="progress-text">
-            {unlockedTrophies.length} / {ACHIEVEMENTS.length}
-          </span>
-        </div>
-      </div>
-      
-      <div className="trophies-grid">
+      <ul className="trophies-list">
         {unlockedTrophies.map((trophy) => (
-          <div
-            className={`trophy-card ${expandedId === trophy.id ? 'expanded' : ''}`}
-            key={trophy.id}
-            onClick={() => setExpandedId(expandedId === trophy.id ? null : trophy.id)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setExpandedId(expandedId === trophy.id ? null : trophy.id)
-              }
-            }}
-          >
-            <div className="trophy-icon">{trophy.icon}</div>
-            <div className="trophy-info">
-              <div className="trophy-name">{trophy.name}</div>
-              {expandedId === trophy.id && (
-                <div className="trophy-description">{trophy.description}</div>
-              )}
+          <li className="trophy-item" key={trophy.id}>
+            <div className="trophy-display">
+              <i className={`trophy-icon trophy-${trophy.id}`}>
+                {trophy.icon}
+              </i>
+              <span className="trophy-name">{trophy.name}</span>
+              <div className="trophy-desc">
+                <small>{trophy.description}</small>
+              </div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

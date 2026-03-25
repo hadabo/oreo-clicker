@@ -2929,3 +2929,308 @@ h2 {
     padding: 12px 15px;
   }
 }
+
+/* =============================================
+   TROPHIES - MATCHING GADGET STYLE
+   ============================================= */
+
+.trophies-center h2 {
+  color: #423939;
+  margin-bottom: 20px;
+}
+
+.trophies-list {
+  list-style: none;
+  padding: 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.trophy-item {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.trophy-display {
+  background: white;
+  color: #423939;
+  border: 0;
+  height: 80px;
+  width: 100%;
+  border-radius: 40px;
+  padding: 5px 15px 10px 80px;
+  box-shadow: 0 4px 1px #382d2d, 0 6px 1px #5b494b, 0 8px 1px #2e2827,
+    0 -2px 5px #19100e, inset 0 -2px 5px #3b2e8e;
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: calc(4px + 2vmin);
+  line-height: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trophy-icon {
+  width: 60px;
+  position: absolute;
+  height: 60px;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  box-shadow: inset 0 4px 1px rgba(0, 0, 0, 0.3), 0 2px 3px #de922e;
+  font-size: 35px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.trophy-name {
+  font-size: calc(6px + 2vmin);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.trophy-desc {
+  font-size: calc(3px + 1.5vmin);
+  color: #666;
+  line-height: 1.2;
+}
+
+/* =============================================
+   STATS - MATCHING GADGET STYLE
+   ============================================= */
+
+.stats h2 {
+  color: #423939;
+  margin-bottom: 20px;
+}
+
+.stats-list {
+  list-style: none;
+  padding: 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.stat-item {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.stat-display {
+  background: white;
+  color: #423939;
+  border: 0;
+  height: 70px;
+  width: 100%;
+  border-radius: 35px;
+  padding: 5px 15px 5px 75px;
+  box-shadow: 0 4px 1px #382d2d, 0 6px 1px #5b494b, 0 8px 1px #2e2827,
+    0 -2px 5px #19100e, inset 0 -2px 5px #3b2e8e;
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: calc(4px + 2vmin);
+  line-height: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-icon {
+  width: 55px;
+  position: absolute;
+  height: 55px;
+  left: 10px;
+  top: 7.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 27.5px;
+  box-shadow: inset 0 4px 1px rgba(0, 0, 0, 0.3);
+  font-size: 32px;
+}
+
+/* Different colors for different stat types */
+.stat-icon.stat-time {
+  background-color: #c1b1ef;
+}
+
+.stat-icon.stat-clicks {
+  background-color: #feff62;
+}
+
+.stat-icon.stat-gadgets {
+  background-color: #62ffad;
+}
+
+.stat-icon.stat-prestige-level {
+  background-color: #ffd700;
+}
+
+.stat-icon.stat-prestige-points {
+  background-color: #ffed4e;
+}
+
+.stat-icon.stat-combo {
+  background-color: #ff9966;
+}
+
+.stat-icon.stat-golden {
+  background-color: #ffd700;
+}
+
+.stat-label {
+  font-size: calc(3px + 1.5vmin);
+  color: #666;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.stat-value {
+  font-size: calc(6px + 2vmin);
+  font-weight: bold;
+  color: #0068b5;
+}
+
+/* =============================================
+   PRESTIGE SHOP - MATCHING GADGET STYLE
+   ============================================= */
+
+.prestige-upgrades-list {
+  list-style: none;
+  padding: 0;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.prestige-upgrade-item {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.buy-prestige-upgrade {
+  background: white;
+  color: #423939;
+  border: 0;
+  height: 85px;
+  width: 100%;
+  border-radius: 42.5px;
+  padding: 5px 15px 10px 80px;
+  box-shadow: 0 4px 1px #382d2d, 0 6px 1px #5b494b, 0 8px 1px #2e2827,
+    0 -2px 5px #19100e, inset 0 -2px 5px #3b2e8e;
+  position: relative;
+  font-family: 'Pacifico', cursive;
+  font-size: calc(4px + 2vmin);
+  line-height: 1;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.buy-prestige-upgrade:not(.owned):not(.disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 1px #382d2d, 0 8px 1px #5b494b, 0 10px 1px #2e2827,
+    0 0px 5px #19100e, inset 0 -2px 5px #3b2e8e;
+}
+
+.buy-prestige-upgrade.owned {
+  background: #e8f5e9;
+  opacity: 0.8;
+  cursor: default;
+}
+
+.buy-prestige-upgrade.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buy-prestige-upgrade.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.prestige-upgrade-icon {
+  width: 60px;
+  position: absolute;
+  height: 60px;
+  left: 10px;
+  top: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  box-shadow: inset 0 4px 1px rgba(0, 0, 0, 0.3);
+  font-size: 35px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.buy-prestige-upgrade.owned .prestige-upgrade-icon {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+}
+
+.buy-prestige-upgrade .upgrade-name {
+  font-size: calc(6px + 2vmin);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.buy-prestige-upgrade .upgrade-cost {
+  font-size: calc(5px + 1.5vmin);
+  color: #0068b5;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.buy-prestige-upgrade .upgrade-desc {
+  font-size: calc(3px + 1.5vmin);
+  color: #666;
+  line-height: 1.2;
+}
+
+.upgrade-locked-msg {
+  font-size: calc(3px + 1.2vmin);
+  color: #f44336;
+  margin-top: 3px;
+}
+
+/* =============================================
+   MOBILE RESPONSIVE
+   ============================================= */
+
+@media only screen and (max-width: 749px) {
+  .trophies-list,
+  .stats-list,
+  .prestige-upgrades-list {
+    width: 100%;
+  }
+  
+  .trophy-display,
+  .stat-display,
+  .buy-prestige-upgrade {
+    font-size: calc(8px + 2vmin);
+  }
+  
+  .trophy-name,
+  .stat-value,
+  .buy-prestige-upgrade .upgrade-name {
+    font-size: calc(10px + 2vmin);
+  }
+  
+  .trophy-desc,
+  .stat-label,
+  .buy-prestige-upgrade .upgrade-desc {
+    font-size: calc(6px + 1.5vmin);
+  }
+}

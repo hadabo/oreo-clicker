@@ -55,12 +55,7 @@ const PRESTIGE_UPGRADES = [
 
 function PrestigeShop({ prestige, prestigeUpgrades = [], onPurchase }) {
   if (!prestige || prestige.level === 0) {
-    return (
-      <div className="prestige-shop-locked">
-        <div className="shop-lock-icon">🔒</div>
-        <p>Prestige once to unlock this shop!</p>
-      </div>
-    )
+    return null
   }
 
   const canAfford = (cost) => prestige.points >= cost
@@ -71,51 +66,44 @@ function PrestigeShop({ prestige, prestigeUpgrades = [], onPurchase }) {
   }
 
   return (
-    <div className="prestige-shop">
-      <div className="shop-header">
-        <h3>⭐ Prestige Shop</h3>
-        <div className="prestige-points-display">
-          {prestige.points} Point{prestige.points !== 1 ? 's' : ''} Available
-        </div>
-      </div>
-      <div className="shop-upgrades">
+    <div>
+      <h2 className="oreo-font">
+        ⭐ Prestige Shop ({prestige.points} {prestige.points !== 1 ? 'Points' : 'Point'})
+      </h2>
+      <ul className="prestige-upgrades-list">
         {PRESTIGE_UPGRADES.map(upgrade => {
           const owned = isOwned(upgrade.id)
           const canBuy = canAfford(upgrade.cost) && meetsRequirements(upgrade)
           const locked = !meetsRequirements(upgrade)
 
           return (
-            <div 
-              key={upgrade.id}
-              className={`prestige-upgrade ${owned ? 'owned' : ''} ${!canBuy ? 'disabled' : ''} ${locked ? 'locked' : ''}`}
-            >
-              <div className="upgrade-icon">{upgrade.icon}</div>
-              <div className="upgrade-info">
-                <div className="upgrade-name">{upgrade.name}</div>
-                <div className="upgrade-description">{upgrade.description}</div>
+            <li className="prestige-upgrade-item" key={upgrade.id}>
+              <button 
+                className={`buy-prestige-upgrade ${owned ? 'owned' : ''} ${!canBuy ? 'disabled' : ''} ${locked ? 'locked' : ''}`}
+                onClick={() => !owned && canBuy && onPurchase(upgrade.id)}
+                disabled={owned || !canBuy}
+                aria-label={`${upgrade.name}: ${upgrade.description}. Cost: ${upgrade.cost} point${upgrade.cost !== 1 ? 's' : ''}. ${owned ? 'Already owned' : ''}`}
+              >
+                <i className={`prestige-upgrade-icon upgrade-${upgrade.id}`}>
+                  {upgrade.icon}
+                </i>
+                <span className="upgrade-name">{upgrade.name}</span>
+                <span className="upgrade-cost">
+                  {owned ? '✓ Owned' : `${upgrade.cost} point${upgrade.cost !== 1 ? 's' : ''}`}
+                </span>
+                <div className="upgrade-desc">
+                  <small>{upgrade.description}</small>
+                </div>
                 {locked && upgrade.requires && (
-                  <div className="upgrade-requirement">
-                    Requires: {PRESTIGE_UPGRADES.find(u => u.id === upgrade.requires)?.name}
+                  <div className="upgrade-locked-msg">
+                    <small>🔒 Requires: {PRESTIGE_UPGRADES.find(u => u.id === upgrade.requires)?.name}</small>
                   </div>
                 )}
-              </div>
-              <div className="upgrade-action">
-                {owned ? (
-                  <span className="owned-badge">✓ Owned</span>
-                ) : (
-                  <button 
-                    className="buy-upgrade-btn"
-                    onClick={() => onPurchase(upgrade.id)}
-                    disabled={!canBuy}
-                  >
-                    {upgrade.cost} Point{upgrade.cost !== 1 ? 's' : ''}
-                  </button>
-                )}
-              </div>
-            </div>
+              </button>
+            </li>
           )
         })}
-      </div>
+      </ul>
     </div>
   )
 }
