@@ -7,6 +7,7 @@ export default function Trophies({ state, unlockedAchievements = [] }) {
   const { settings } = useSettings()
   const [confettiTrigger, setConfettiTrigger] = useState(0)
   const [previousCount, setPreviousCount] = useState(0)
+  const [expandedId, setExpandedId] = useState(null)
   
   const unlockedTrophies = ACHIEVEMENTS.filter(achievement => 
     unlockedAchievements.includes(achievement.id)
@@ -22,24 +23,64 @@ export default function Trophies({ state, unlockedAchievements = [] }) {
     setPreviousCount(unlockedTrophies.length)
   }, [unlockedTrophies.length, previousCount, settings.animationsEnabled])
   
-  return (
-    unlockedTrophies.length > 0 && (
+  if (unlockedTrophies.length === 0) {
+    return (
       <div className="trophies-center">
-        <h2 className="oreo-font">Trophies Center</h2>
-        {settings.animationsEnabled && <Confetti trigger={confettiTrigger} />}
-        <div className="trophies">
-          {unlockedTrophies.map((trophy) => (
-            <div
-              className={`trophy trophy-${trophy.id}`}
-              key={trophy.id}
-              data-hint={trophy.description}
-            >
-              <span className="trophy-emoji-icon">{trophy.icon}</span>
-              <span>{trophy.name}</span>
-            </div>
-          ))}
+        <div className="trophies-empty">
+          <div className="empty-icon">🏆</div>
+          <p>No achievements unlocked yet!</p>
+          <small>Start clicking to earn your first trophy</small>
         </div>
       </div>
     )
+  }
+  
+  return (
+    <div className="trophies-center">
+      {settings.animationsEnabled && <Confetti trigger={confettiTrigger} />}
+      
+      <div className="trophies-header">
+        <div className="trophies-count">
+          <span className="count-number">{unlockedTrophies.length}</span>
+          <span className="count-label">Achievement{unlockedTrophies.length !== 1 ? 's' : ''}</span>
+        </div>
+        <div className="trophies-progress">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill" 
+              style={{ width: `${(unlockedTrophies.length / ACHIEVEMENTS.length) * 100}%` }}
+            />
+          </div>
+          <span className="progress-text">
+            {unlockedTrophies.length} / {ACHIEVEMENTS.length}
+          </span>
+        </div>
+      </div>
+      
+      <div className="trophies-grid">
+        {unlockedTrophies.map((trophy) => (
+          <div
+            className={`trophy-card ${expandedId === trophy.id ? 'expanded' : ''}`}
+            key={trophy.id}
+            onClick={() => setExpandedId(expandedId === trophy.id ? null : trophy.id)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setExpandedId(expandedId === trophy.id ? null : trophy.id)
+              }
+            }}
+          >
+            <div className="trophy-icon">{trophy.icon}</div>
+            <div className="trophy-info">
+              <div className="trophy-name">{trophy.name}</div>
+              {expandedId === trophy.id && (
+                <div className="trophy-description">{trophy.description}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

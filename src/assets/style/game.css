@@ -2463,3 +2463,469 @@ h2 {
     max-width: 350px;
   }
 }
+/* Modern Trophies Center Styles */
+.trophies-center {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Empty State */
+.trophies-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.trophies-empty p {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  margin: 10px 0;
+  color: #423939;
+}
+
+.trophies-empty small {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Trophies Header */
+.trophies-header {
+  background: linear-gradient(135deg, #0068b5 0%, #011ca7 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.trophies-count {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.count-number {
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  color: #ffd700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.count-label {
+  font-family: 'Pacifico', cursive;
+  font-size: 16px;
+  color: white;
+}
+
+.trophies-progress {
+  flex: 1;
+  max-width: 250px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.progress-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Pacifico', cursive;
+}
+
+/* Trophies Grid */
+.trophies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+/* Trophy Card */
+.trophy-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trophy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0068b5, #ffd700);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.trophy-card:hover::before,
+.trophy-card.expanded::before {
+  transform: scaleX(1);
+}
+
+.trophy-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: #0068b5;
+}
+
+.trophy-card.expanded {
+  background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+  border-color: #0068b5;
+}
+
+.trophy-icon {
+  font-size: 40px;
+  line-height: 1;
+  flex-shrink: 0;
+  animation: trophyFloat 3s ease-in-out infinite;
+}
+
+@keyframes trophyFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.trophy-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.trophy-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 16px;
+  color: #423939;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trophy-card.expanded .trophy-name {
+  white-space: normal;
+  overflow: visible;
+}
+
+.trophy-description {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 104, 181, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media only screen and (max-width: 749px) {
+  .trophies-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .trophies-count {
+    width: 100%;
+  }
+  
+  .count-number {
+    font-size: 32px;
+  }
+  
+  .trophies-progress {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .trophies-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .trophy-card {
+    padding: 12px;
+  }
+  
+  .trophy-icon {
+    font-size: 36px;
+  }
+  
+  .trophy-name {
+    font-size: 15px;
+  }
+  
+  .trophy-description {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .count-number {
+    font-size: 28px;
+  }
+  
+  .count-label {
+    font-size: 14px;
+  }
+  
+  .trophy-icon {
+    font-size: 32px;
+  }
+  
+  .trophy-name {
+    font-size: 14px;
+  }
+}
+
+/* Old trophy styles - hide or remove */
+.trophy {
+  display: none;
+}
+
+.trophies {
+  display: none;
+}
+
+/* Improved Progress Indicator */
+.progress-indicator {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  margin-bottom: 20px;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.progress-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.progress-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #423939;
+  flex: 1;
+}
+
+.progress-stats {
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  color: #0068b5;
+  font-weight: bold;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0068b5 0%, #00b6f1 100%);
+  border-radius: 12px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(0, 104, 181, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-description {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.progress-message {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #0068b5;
+  padding: 30px 20px;
+}
+
+/* Modern Stats Grid */
+.stats {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #0068b5;
+}
+
+.stat-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-value {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #0068b5;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Responsive Stats */
+@media only screen and (max-width: 749px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 12px;
+  }
+  
+  .stat-icon {
+    font-size: 24px;
+  }
+  
+  .stat-value {
+    font-size: 16px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+  
+  .progress-indicator {
+    padding: 15px;
+  }
+  
+  .progress-icon {
+    font-size: 28px;
+  }
+  
+  .progress-name {
+    font-size: 16px;
+  }
+  
+  .progress-stats {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    padding: 12px 15px;
+  }
+}
