@@ -76,6 +76,10 @@ export function useGameState(initialState) {
     })
   }, [dispatch])
 
+  const breakCombo = useCallback(() => {
+    dispatch({ type: 'BREAK_COMBO' })
+  }, [dispatch])
+
   return {
     state,
     actions: {
@@ -84,7 +88,8 @@ export function useGameState(initialState) {
       tick,
       prestige,
       buyPrestigeUpgrade,
-      collectGoldenOreo
+      collectGoldenOreo,
+      breakCombo
     }
   }
 }

@@ -57,6 +57,8 @@ export function sanitizeGameState(state, fallback) {
       multiplier: Math.max(1.0, state.prestige.multiplier || 1.0)
     } : { level: 0, points: 0, totalEarned: 0, multiplier: 1.0 },
     prestigeUpgrades: Array.isArray(state.prestigeUpgrades) ? state.prestigeUpgrades : [],
-    goldenOreosCollected: Math.max(0, Math.floor(state.goldenOreosCollected || 0))
+    goldenOreosCollected: Math.max(0, Math.floor(state.goldenOreosCollected || 0)),
+    combo: Math.max(0, Math.floor(state.combo || 0)),
+    maxCombo: Math.max(0, Math.floor(state.maxCombo || 0))
   }
 }

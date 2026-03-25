@@ -11,6 +11,7 @@ import ProgressIndicator from './components/ProgressIndicator'
 import PrestigeButton from './components/PrestigeButton'
 import PrestigeShop from './components/PrestigeShop'
 import GoldenOreo from './components/GoldenOreo'
+import ComboIndicator from './components/ComboIndicator'
 
 // Import lazy-loaded components
 import { LazyGadgetsList, LazyTrophies, LazyStats } from './components/LazyLoadedComponents'
@@ -129,6 +130,7 @@ function Oreo() {
     <ErrorBoundary>
       <div className={`oreo-clicker ${!settings.animationsEnabled ? 'animations-disabled' : ''}`}>
         <GoldenOreo state={state} onCollect={handleGoldenOreoCollect} />
+        <ComboIndicator comboCount={state.combo || 0} onComboBreak={actions.breakCombo} />
         <div className="oreo-bg">
           <div className="biscuit-side">
             <div>

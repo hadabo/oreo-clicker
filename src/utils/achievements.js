@@ -89,6 +89,27 @@ export const ACHIEVEMENTS = [
     description: 'Collect 1,000,000 Oreos',
     condition: (state) => state.oreos >= 1000000,
     icon: '💰'
+  },
+  {
+    id: 'combo_starter',
+    name: 'Combo Starter',
+    description: 'Reach a 10 click combo',
+    condition: (state) => (state.maxCombo || 0) >= 10,
+    icon: '🔥'
+  },
+  {
+    id: 'combo_master',
+    name: 'Combo Master',
+    description: 'Reach a 50 click combo',
+    condition: (state) => (state.maxCombo || 0) >= 50,
+    icon: '⚡'
+  },
+  {
+    id: 'legendary_combo',
+    name: 'Legendary Clicker',
+    description: 'Reach a 100 click combo',
+    condition: (state) => (state.maxCombo || 0) >= 100,
+    icon: '👑'
   }
 ]
 

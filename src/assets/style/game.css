@@ -1750,3 +1750,109 @@ h2 {
     padding: 3px 10px;
   }
 }
+
+/* Combo Indicator Styles */
+.combo-indicator {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  z-index: 500;
+  animation: comboEntrance 0.3s ease-out;
+}
+
+.combo-indicator.breaking {
+  animation: comboBreak 0.3s ease-out;
+}
+
+.combo-content {
+  background: white;
+  border: 3px solid #666;
+  border-radius: 16px;
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.combo-count {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.combo-label {
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+
+.combo-multiplier {
+  display: inline-block;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: 'Pacifico', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.combo-tier {
+  font-family: 'Pacifico', cursive;
+  font-size: 12px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+@keyframes comboEntrance {
+  0% {
+    transform: translateY(-50%) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes comboBreak {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2) rotate(5deg);
+    opacity: 0.5;
+  }
+}
+
+/* Mobile responsive for combo */
+@media only screen and (max-width: 749px) {
+  .combo-indicator {
+    top: auto;
+    bottom: 120px;
+    right: 20px;
+    transform: none;
+  }
+  
+  .combo-content {
+    padding: 10px 15px;
+  }
+  
+  .combo-count {
+    font-size: 36px;
+  }
+  
+  .combo-multiplier {
+    font-size: 14px;
+    padding: 3px 10px;
+  }
+}

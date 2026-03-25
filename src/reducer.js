@@ -2,17 +2,20 @@ import crepto from './helpers/crypto'
 import { STORAGE_KEY, MAX_MESSAGES, OREO_CLICK_VALUE } from './constants'
 import { calculatePrestigePoints, calculatePrestigeMultiplier } from './utils/prestige'
 import { applyPrestigeUpgrades } from './utils/prestigeUpgrades'
+import { calculateComboMultiplier } from './utils/combo'
 
 function reducer(state, action) {
   switch (action.type) {
     case 'GET_OREO':
       const prestigeClickMultiplier = state.prestige?.multiplier || 1.0
       const upgradeClickMultiplier = applyPrestigeUpgrades(state, 'click')
-      const clickValue = OREO_CLICK_VALUE * prestigeClickMultiplier * upgradeClickMultiplier
+      const comboMultiplier = calculateComboMultiplier(state.combo || 0)
+      const clickValue = OREO_CLICK_VALUE * prestigeClickMultiplier * upgradeClickMultiplier * comboMultiplier
       return {
         ...state,
         oreos: state.oreos + clickValue,
         clicks: state.clicks + 1,
+        combo: (state.combo || 0) + 1,
       }
 
     case 'BUY_GADGET':
@@ -91,6 +94,8 @@ function reducer(state, action) {
         prestige: newPrestigeState,
         prestigeUpgrades: keptUpgrades,
         goldenOreosCollected: state.goldenOreosCollected || 0,
+        combo: 0,
+        maxCombo: state.maxCombo || 0,
         trophies: state.trophies,
         autoSaveTimeout: state.autoSaveTimeout
       }
@@ -140,6 +145,13 @@ function reducer(state, action) {
       }
       
       return stateWithBonus
+
+    case 'BREAK_COMBO':
+      return {
+        ...state,
+        combo: 0,
+        maxCombo: Math.max(state.maxCombo || 0, state.combo || 0)
+      }
 
     default:
       return state

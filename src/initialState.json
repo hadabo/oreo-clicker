@@ -78,6 +78,8 @@
   },
   "prestigeUpgrades": [],
   "goldenOreosCollected": 0,
+  "combo": 0,
+  "maxCombo": 0,
   "trophies": [
     {
       "type": "start",
