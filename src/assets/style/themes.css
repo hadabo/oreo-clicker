@@ -1,0 +1,142 @@
+/* Theme CSS Variables */
+:root {
+  --color-primary: #01ffff;
+  --color-secondary: #011ca7;
+  --color-background: #282c34;
+  --color-text: #ffffff;
+  --color-accent: #0068b5;
+  
+  /* Transition for smooth theme changes */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Apply theme colors to main background and biscuit side only */
+.oreo-bg {
+  background-color: var(--color-background) !important;
+  background-image: radial-gradient(
+    circle,
+    var(--color-primary) 10%,
+    var(--color-secondary) 80%
+  ) !important;
+  color: var(--color-text) !important;
+  transition: var(--theme-transition);
+}
+
+.biscuit-side {
+  background-image: radial-gradient(
+    circle,
+    var(--color-primary) 10%,
+    var(--color-secondary) 80%
+  ) !important;
+  transition: var(--theme-transition);
+}
+
+/* Keep gadgets-side with original paper texture - no theme override */
+
+/* Settings panel themed */
+.settings-panel {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: var(--color-text);
+  border: 2px solid var(--color-accent);
+  transition: var(--theme-transition);
+}
+
+.settings-toggle {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  transition: var(--theme-transition);
+}
+
+.settings-toggle:hover {
+  background-color: var(--color-primary);
+  color: #000;
+}
+
+/* Theme selector */
+.theme-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.theme-option {
+  padding: 12px 8px;
+  border: 2px solid rgba(0, 104, 181, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(0, 104, 181, 0.05);
+  text-align: center;
+}
+
+.theme-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(0, 104, 181, 0.1);
+  border-color: rgba(0, 104, 181, 0.5);
+}
+
+.theme-option.active {
+  border-color: #0068b5;
+  background: rgba(0, 104, 181, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 104, 181, 0.2);
+  font-weight: bold;
+}
+
+.theme-preview {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.theme-preview-color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-name {
+  font-size: 14px;
+  color: #423939;
+}
+
+/* Subtle theme accents for gadgets (keep original style mostly) */
+.buy-gadget:hover {
+  box-shadow: 0 4px 1px #382d2d, 0 6px 1px #5b494b, 0 8px 1px #2e2827,
+    0 -2px 5px #19100e, inset 0 -2px 5px var(--color-accent);
+}
+
+/* Trophy tooltip colors use theme accent */
+.trophy::before {
+  background: var(--color-accent);
+}
+
+.trophy::after {
+  border-color: var(--color-accent) transparent transparent transparent;
+}
+
+/* Counter and speed text on themed background */
+.counter,
+.speed {
+  color: var(--color-text);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Stats panel subtle theme integration */
+.stats {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Keep original notification styles - they work well */
+.message {
+  /* Preserve original white background and shadows */
+}
+
+/* Trophy color badges can use theme color subtly */
+.trophy span {
+  background: var(--color-accent);
+}
+

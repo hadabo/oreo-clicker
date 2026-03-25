@@ -1,0 +1,310 @@
+/* Click Effects Styles */
+
+.big-biscuit {
+  position: relative;
+  overflow: visible;
+}
+
+/* Particle effects */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 0 4px currentColor;
+}
+
+/* Floating numbers */
+.floating-number {
+  position: absolute;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  text-shadow: 
+    2px 2px 0px #000,
+    -1px -1px 0px #000,
+    1px -1px 0px #000,
+    -1px 1px 0px #000,
+    0 0 10px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 101;
+  transform: translateX(-50%);
+}
+
+/* Ripple effect */
+.click-ripple {
+  position: absolute;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 99;
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 0.6s ease-out;
+}
+
+@keyframes ripple-animation {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+  }
+}
+
+/* Enhanced oreo click feedback */
+.oreo-biscuit:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Shake animation for insufficient funds */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake-animation {
+  animation: shake 0.5s ease;
+}
+
+/* Pulse animation for purchases */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse-animation {
+  animation: pulse 0.3s ease;
+}
+
+/* Glow effect for clickable oreo */
+.big-biscuit:hover .oreo-biscuit {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .particle,
+  .floating-number,
+  .click-ripple {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .shake-animation,
+  .pulse-animation {
+    animation: none !important;
+  }
+  
+  .oreo-biscuit:active {
+    transform: none !important;
+  }
+}
+
+/* Success flash effect - using overlay to preserve background */
+.success-flash::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 255, 100, 0.3);
+  pointer-events: none;
+  animation: flash-overlay 0.4s ease;
+  z-index: 1;
+}
+
+@keyframes flash-overlay {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.success-flash {
+  position: relative;
+}
+
+/* Error flash effect */
+@keyframes error-flash {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(255, 0, 0, 0.2); }
+}
+
+.error-flash {
+  animation: error-flash 0.4s ease;
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  opacity: 0;
+  animation: confetti-fall 3s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    top: -10%;
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+    transform: translateX(calc(-50vw + (var(--random, 0.5) * 100vw))) 
+               rotate(720deg);
+  }
+}
+
+/* Achievement unlock animation */
+.trophy {
+  animation: trophy-unlock 0.6s ease-out;
+}
+
+@keyframes trophy-unlock {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for newly unlocked trophy */
+.trophy-new {
+  animation: trophy-pulse 2s ease-in-out;
+}
+
+@keyframes trophy-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: inset 0 4px 1px rgba(0, 0, 0, 0.3),
+      0 3px 2px rgba(255, 255, 255, 1), 0 -2px 5px #de922e;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: inset 0 4px 1px rgba(0, 0, 0, 0.3),
+      0 3px 2px rgba(255, 255, 255, 1), 0 0 20px #ffeb3b;
+  }
+}
+
+/* Counter animation */
+.counter-increase {
+  animation: counter-flash 0.3s ease;
+}
+
+@keyframes counter-flash {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Progress bar animations */
+.progress-bar {
+  position: relative;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #45a049);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progress-shine 2s infinite;
+}
+
+@keyframes progress-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Gadget purchase celebration */
+.purchase-celebration {
+  animation: celebration 0.6s ease-out;
+}
+
+@keyframes celebration {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(3deg);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece,
+  .trophy-unlock,
+  .trophy-pulse,
+  .counter-increase,
+  .purchase-celebration {
+    animation: none !important;
+  }
+  
+  .progress-bar-fill::after {
+    animation: none !important;
+  }
+}

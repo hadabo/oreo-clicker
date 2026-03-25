@@ -1,16 +1,22 @@
 import crepto from './helpers/crypto'
+import { STORAGE_KEY, MAX_MESSAGES, OREO_CLICK_VALUE } from './constants'
+import { calculatePrestigePoints, calculatePrestigeMultiplier } from './utils/prestige'
 
 function reducer(state, action) {
   switch (action.type) {
     case 'GET_OREO':
+      const prestigeClickMultiplier = state.prestige?.multiplier || 1.0
+      const clickValue = OREO_CLICK_VALUE * prestigeClickMultiplier
       return {
         ...state,
-        oreos: state.oreos + 1,
+        oreos: state.oreos + clickValue,
         clicks: state.clicks + 1,
       }
 
     case 'BUY_GADGET':
-      const speed = oreosPerSecond(action.newGadgets)
+      const baseSpeed = oreosPerSecond(action.newGadgets)
+      const buyMultiplier = state.prestige?.multiplier || 1.0
+      const speed = baseSpeed * buyMultiplier
       return {
         ...state,
         oreos: state.oreos - action.totalCost,
@@ -20,77 +26,121 @@ function reducer(state, action) {
       }
 
     case 'PUSH_MESSAGE':
-      const lastThreeMessages = getMaxMessages(state.messages, 3)
+      const lastThreeMessages = getMaxMessages(state.messages, MAX_MESSAGES)
       return {
         ...state,
         messages: [...lastThreeMessages, action.newMessage],
       }
 
     case 'TICK':
-      const oreosPerTick = oreosPerSecond(state.gadgets)
+      const tickMultiplier = state.prestige?.multiplier || 1.0
+      const oreosPerTick = oreosPerSecond(state.gadgets) * tickMultiplier
       const newMessages = getUpdatedMessages(state.messages)
+      const elapsedTime = action.payload?.elapsedTime || 0
+      
       return {
         ...state,
-        ticks: state.ticks + 1,
+        ticks: elapsedTime,
         oreos: state.oreos + oreosPerTick,
         messages: newMessages,
+        lastTickTime: Date.now(),
       }
 
     case 'SAVE_PROGRESS':
-      if (state.ticks % state.autoSaveTimeout === 0) {
+      // Save progress with current auto-save interval from settings
+      const autoSaveInterval = action.payload?.autoSaveInterval || state.autoSaveTimeout || 10
+      
+      if (state.ticks % autoSaveInterval === 0) {
         saveProgress(state)
       }
       return state
 
+    case 'PRESTIGE':
+      const currentPrestige = state.prestige || { level: 0, points: 0, totalEarned: 0, multiplier: 1.0 }
+      const newPrestigePoints = calculatePrestigePoints(state.oreos + currentPrestige.totalEarned)
+      const pointsGained = newPrestigePoints - currentPrestige.points
+      
+      if (pointsGained <= 0) return state
+      
+      const newPrestigeState = {
+        level: currentPrestige.level + 1,
+        points: newPrestigePoints,
+        totalEarned: currentPrestige.totalEarned + state.oreos,
+        multiplier: calculatePrestigeMultiplier(newPrestigePoints)
+      }
+      
+      // Reset to initial state but keep prestige and trophies
+      const resetState = {
+        oreos: 0,
+        clicks: 0,
+        gadgetsCount: 0,
+        speed: 0,
+        ticks: 0,
+        gadgets: action.payload.initialGadgets,
+        messages: [{
+          type: 'info',
+          text: `Prestiged! Now at ${newPrestigeState.multiplier.toFixed(1)}x multiplier!`,
+          time: 10
+        }],
+        prestige: newPrestigeState,
+        trophies: state.trophies,
+        autoSaveTimeout: state.autoSaveTimeout
+      }
+      
+      saveProgress(resetState)
+      return resetState
+
     default:
       return state
   }
+}
 
-  function getMaxMessages(messages, max) {
-    let maxMessages = messages
-    if (maxMessages.length >= max) {
-      maxMessages.shift()
-    }
-
-    return maxMessages
+// Helper functions moved outside the reducer for better code organization
+function getMaxMessages(messages, max) {
+  if (messages.length >= max) {
+    return [...messages.slice(1)]; // Create a new array without the first element
   }
+  return [...messages]; // Return a copy of the array
+}
 
-  function getUpdatedMessages(messages) {
-    let updatedMessages = messages
-    if (updatedMessages.length > 0) {
-      updatedMessages = updatedMessages
-        .map(message => {
-          return { ...message, time: message.time - 1 }
-        })
-        .filter(message => {
-          return message.time >= 0 && message
-        })
-    }
+function getUpdatedMessages(messages) {
+  if (messages.length === 0) return [];
+  
+  return messages
+    .map(message => ({
+      ...message,
+      time: message.time - 1
+    }))
+    .filter(message => message.time >= 0);
+}
 
-    return updatedMessages
+function oreosPerSecond(gadgets) {
+  return gadgets.reduce((accumulator, currentValue) => {
+    return accumulator + (currentValue.speed * currentValue.count);
+  }, 0);
+}
+
+function saveProgress(state) {
+  const newMessage = {
+    type: 'info',
+    text: `Click on the big OREO biscuit to resume :)`,
+    time: 0,
+    id: Date.now()
   }
-
-  function oreosPerSecond(gadgets) {
-    const speedReducer = (accumulator, currentValue) => {
-      accumulator += currentValue.speed * currentValue.count
-      return accumulator
-    }
-    const speed = gadgets.reduce(speedReducer, 0)
-    return speed
+  
+  const ticks = typeof state.ticks === 'number' ? state.ticks : 0;
+  
+  const stateToSave = { 
+    ...state, 
+    messages: [newMessage],
+    ticks,
+    lastTickTime: Date.now()
   }
+  
+  const progress = JSON.stringify(stateToSave)
+  const encryptedProgress = crepto('encrypt', progress)
 
-  function saveProgress(state) {
-    const newMessage = {
-      type: 'info',
-      text: `Click on the big OREO biscuit to resume :)`,
-      time: 0,
-    }
-    const stateWithoutMessages = { ...state, messages: [newMessage] }
-    const progrees = JSON.stringify(stateWithoutMessages)
-    const encryptedProgress = crepto('encrypt', progrees)
-
-    window.localStorage.setItem('progrees', encryptedProgress)
-  }
+  window.localStorage.setItem(STORAGE_KEY, encryptedProgress)
 }
 
 export default reducer

@@ -25,6 +25,41 @@
       "inflation": 1.2,
       "speed": 7,
       "count": 0
+    },
+    {
+      "type": "factory",
+      "cost": 1000,
+      "inflation": 1.2,
+      "speed": 50,
+      "count": 0
+    },
+    {
+      "type": "mine",
+      "cost": 5000,
+      "inflation": 1.2,
+      "speed": 200,
+      "count": 0
+    },
+    {
+      "type": "spaceship",
+      "cost": 25000,
+      "inflation": 1.2,
+      "speed": 1000,
+      "count": 0
+    },
+    {
+      "type": "laboratory",
+      "cost": 100000,
+      "inflation": 1.2,
+      "speed": 5000,
+      "count": 0
+    },
+    {
+      "type": "portal",
+      "cost": 500000,
+      "inflation": 1.2,
+      "speed": 25000,
+      "count": 0
     }
   ],
   "messages": [
@@ -35,6 +70,12 @@
     }
   ],
   "autoSaveTimeout": 5,
+  "prestige": {
+    "level": 0,
+    "points": 0,
+    "totalEarned": 0,
+    "multiplier": 1.0
+  },
   "trophies": [
     {
       "type": "start",

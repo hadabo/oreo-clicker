@@ -1,32 +1,50 @@
 import React from 'react'
-import numeral from 'numeral'
+import { useSettings } from '../context/SettingsContext'
+import { formatNumber, formatSpeed } from '../utils/formatNumber'
 
-export default function GadgetsList(props) {
+function GadgetsList(props) {
   const { gadgets, buyGadget } = props
+  const { settings } = useSettings()
+  
+  const handleBuyClick = (event, gadgetType) => {
+    if (settings.animationsEnabled) {
+      const button = event.currentTarget
+      button.classList.add('pulse-animation')
+      setTimeout(() => button.classList.remove('pulse-animation'), 300)
+    }
+    buyGadget(gadgetType)
+  }
+  
   const listItems = gadgets.map(gadget => (
     <li className="automation-item" key={gadget.type}>
-      <button className="buy-gadget" onClick={() => buyGadget(gadget.type)}>
-        <i className={`icon icon-${gadget.type}`} alt="oreo logo" />
+      <button 
+        className="buy-gadget" 
+        onClick={(e) => handleBuyClick(e, gadget.type)}
+        aria-label={`Buy ${gadget.type} for ${formatNumber(gadget.cost)} oreos. Produces ${formatSpeed(gadget.speed)} oreos per second. Currently own ${gadget.count}.`}
+      >
+        <i className={`icon icon-${gadget.type}`} aria-hidden="true" />
         <span className="gadget-name">{gadget.type}</span>
         <span className="gadget-cost">
-          {numeral(gadget.cost).format('0,0') + ' oreos'}
+          {formatNumber(gadget.cost)} oreos
         </span>
         <div>
-          <small>{gadget.speed} oreo per second!</small>
+          <small>{formatSpeed(gadget.speed)} oreo per second!</small>
         </div>
-        <span className="gadgets-count">{gadget.count}</span>
+        <span className="gadgets-count" aria-label={`Owned: ${gadget.count}`}>
+          {gadget.count}
+        </span>
       </button>
     </li>
   ))
 
-  const list = <ul className="automation-store">{listItems}</ul>
-
-  const gadgetsStore = (
+  return (
     <div>
       <h2 className="oreo-font">Automation Gadgets!</h2>
-      {list}
+      <ul className="automation-store">
+        {listItems}
+      </ul>
     </div>
   )
-
-  return gadgetsStore
 }
+
+export default React.memo(GadgetsList)

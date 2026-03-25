@@ -1,11 +1,19 @@
 import React from 'react'
-import numeral from 'numeral'
+import { useAnimatedCounter } from '../hooks/useAnimatedCounter'
+import { useSettings } from '../context/SettingsContext'
+import { formatNumber } from '../utils/formatNumber'
 
-export default function Counter(props) {
+function Counter(props) {
   const { oreos } = props
+  const { settings } = useSettings()
+  const animatedValue = useAnimatedCounter(oreos, 300)
+  const displayValue = settings.animationsEnabled ? animatedValue : oreos
+    
   return (
     <div className="oreos-counter oreo-font">
-      {numeral(oreos).format('0,0')} oreos!
+      {formatNumber(displayValue)} oreos!
     </div>
   )
 }
+
+export default Counter

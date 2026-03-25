@@ -1,111 +1,146 @@
-import React, { Suspense, useReducer, useRef } from 'react'
-import GadgetsList from './components/GadgetsList'
+import React, { useEffect } from 'react'
+// Import core components directly
 import Header from './components/Header'
 import OreoBiscuit from './components/OreoBiscuit'
 import Counter from './components/Counter'
 import Speed from './components/Speed'
 import Notifications from './components/Notifications'
-import Trophies from './components/Trophies'
-import Stats from './components/Stats'
+import ErrorBoundary from './components/ErrorBoundary'
+import Settings from './components/Settings'
+import ProgressIndicator from './components/ProgressIndicator'
+import PrestigeButton from './components/PrestigeButton'
+
+// Import lazy-loaded components
+import { LazyGadgetsList, LazyTrophies, LazyStats } from './components/LazyLoadedComponents'
+
+// Import hooks
+import { useGameState, useTimer, useAnnouncement, useAchievements, useSound } from './hooks'
+import { useSettings } from './context/SettingsContext'
+
 import crepto from './helpers/crypto'
-import numeral from 'numeral'
 import initialState from './initialState.json'
-import reducer from './reducer'
+import { STORAGE_KEY } from './constants'
+import { sanitizeGameState } from './utils/validation'
 import './assets/style/game.css'
+import './assets/style/accessibility.css'
 
 function getProgress() {
-  if (window.localStorage.getItem('progrees')) {
-    const encryptedProgress = window.localStorage.getItem('progrees')
-    let progress = initialState
+  if (window.localStorage.getItem(STORAGE_KEY)) {
+    const encryptedProgress = window.localStorage.getItem(STORAGE_KEY)
 
     try {
-      progress = crepto('decrypt', encryptedProgress)
+      const decryptedData = crepto('decrypt', encryptedProgress)
+      return sanitizeGameState(decryptedData, initialState)
     } catch (error) {
-      console.error(error)
+      console.error('Failed to load save data:', error)
+      return initialState
     }
-
-    return progress
   }
 
   return null
 }
 
 function Oreo() {
-  const [state, dispatch] = useReducer(reducer, getProgress() || initialState)
-  const { oreos, speed, gadgets, messages } = state
+  const { state, actions } = useGameState(getProgress() || initialState)
+  const { oreos, speed, gadgets, messages, ticks } = state
+  const { settings } = useSettings()
 
-  const automationTimerID = useRef(null)
+  const { initializeTimer, startAutomation } = useTimer(actions.tick)
+  const announce = useAnnouncement()
+  const achievements = useAchievements(state, () => playSound('achievement'))
+  const { playSound } = useSound()
 
-  // useEffect(() => {
-  //   automate()
-  // }, [])
+  useEffect(() => {
+    initializeTimer(ticks)
+  }, [initializeTimer, ticks])
 
-  function getOreo() {
-    if (!automationTimerID.current) automate()
-    dispatch({ type: 'GET_OREO' })
+  // Announce score milestones
+  useEffect(() => {
+    if (oreos > 0) {
+      if (oreos === 1) {
+        announce('You earned your first Oreo!')
+      } else if (oreos % 100 === 0) {
+        announce(`You now have ${oreos} Oreos!`)
+      }
+    }
+  }, [oreos, announce])
+
+  const handleOreoClick = () => {
+    startAutomation()
+    actions.getOreo()
+    playSound('click')
   }
 
-  function buyGadget(type) {
-    if (!automationTimerID.current) automate()
-
-    const requestedGadgetIndex = gadgets.findIndex(
-      (gadget) => gadget.type === type
-    )
-
-    const requestedGadget = gadgets[requestedGadgetIndex]
-
-    let newGadgets = gadgets
-    let totalCost = requestedGadget.cost
-
-    if (oreos >= totalCost) {
-      newGadgets[requestedGadgetIndex].count = requestedGadget.count + 1
-      newGadgets[requestedGadgetIndex].cost = Math.ceil(
-        totalCost * requestedGadget.inflation
-      )
-
-      dispatch({ type: 'BUY_GADGET', totalCost, newGadgets })
-    } else {
-      const newMessage = {
-        type: 'info',
-        text: `Not enough oreos yet! you need
-        ${numeral(Math.ceil(totalCost - oreos)).format('0,0')} more!`,
-        time: 5,
+  const handleBuyGadget = (type) => {
+    startAutomation()
+    const success = actions.buyGadget(type)
+    playSound(success ? 'purchase' : 'error')
+    
+    // Visual feedback
+    if (settings.animationsEnabled) {
+      if (success) {
+        announce('Gadget purchased!')
+        // Add success flash to gadgets side
+        const gadgetsSide = document.querySelector('.gadgets-side')
+        gadgetsSide?.classList.add('success-flash')
+        setTimeout(() => gadgetsSide?.classList.remove('success-flash'), 400)
+      } else {
+        announce('Not enough Oreos!')
+        // Add shake animation to oreo
+        const biscuit = document.querySelector('.big-biscuit')
+        biscuit?.classList.add('shake-animation')
+        setTimeout(() => biscuit?.classList.remove('shake-animation'), 500)
       }
-
-      dispatch({ type: 'PUSH_MESSAGE', newMessage })
+    } else {
+      // Just announce without animation
+      if (success) {
+        announce('Gadget purchased!')
+      } else {
+        announce('Not enough Oreos!')
+      }
     }
   }
 
-  function automate() {
-    automationTimerID.current = setInterval(() => tick(), 1000)
-  }
-
-  function tick() {
-    dispatch({ type: 'TICK' })
-    dispatch({ type: 'SAVE_PROGRESS' })
+  const handlePrestige = () => {
+    actions.prestige(initialState.gadgets)
+    playSound('achievement')
+    announce('You have prestiged! Enjoy your multiplier boost!')
   }
 
   return (
-    <div className="oreo-clicker">
-      <div className="oreo-bg">
-        <Suspense fallback={<div>Loading Game :)</div>}>
+    <ErrorBoundary>
+      <div className={`oreo-clicker ${!settings.animationsEnabled ? 'animations-disabled' : ''}`}>
+        <div className="oreo-bg">
           <div className="biscuit-side">
             <div>
               <Header />
-              <OreoBiscuit getOreo={getOreo} />
+              <OreoBiscuit getOreo={handleOreoClick} />
               <Counter oreos={oreos} />
               <Speed speed={speed} />
             </div>
           </div>
           <Notifications messages={messages} />
           <div className="gadgets-side">
-            <Stats state={state} />
-            <GadgetsList buyGadget={buyGadget} gadgets={gadgets} />
-            <Trophies state={state} />
+            <Settings onImportSave={() => window.location.reload()} initialState={initialState} />
+            <ErrorBoundary>
+              <PrestigeButton state={state} onPrestige={handlePrestige} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <ProgressIndicator state={state} unlockedAchievements={achievements.unlockedAchievements} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <LazyStats state={state} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <LazyGadgetsList buyGadget={handleBuyGadget} gadgets={gadgets} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <LazyTrophies state={state} unlockedAchievements={achievements.unlockedAchievements} />
+            </ErrorBoundary>
           </div>
-        </Suspense>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   )
 }
 

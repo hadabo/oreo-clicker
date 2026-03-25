@@ -1,11 +1,19 @@
 import React from 'react'
-import numeral from 'numeral'
+import { useAnimatedCounter } from '../hooks/useAnimatedCounter'
+import { useSettings } from '../context/SettingsContext'
+import { formatSpeed } from '../utils/formatNumber'
 
-export default function Speed(props) {
+function Speed(props) {
   const { speed } = props
+  const { settings } = useSettings()
+  const animatedValue = useAnimatedCounter(speed, 300)
+  const displayValue = settings.animationsEnabled ? animatedValue : speed
+    
   return (
     <div className="oreo-speed oreo-font">
-      per second: {numeral(speed).format('0,0.0')}
+      per second: {formatSpeed(displayValue)}
     </div>
   )
 }
+
+export default Speed
