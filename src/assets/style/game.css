@@ -3234,3 +3234,327 @@ h2 {
     font-size: calc(6px + 1.5vmin);
   }
 }
+
+/* =============================================
+   IMPROVED SPACING AND SIZING
+   ============================================= */
+
+/* Better list spacing */
+.automation-store,
+.trophies-list,
+.stats-list,
+.prestige-upgrades-list {
+  list-style: none;
+  padding: 0;
+  width: 95%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* Improved item margins */
+.automation-item,
+.trophy-item,
+.stat-item,
+.prestige-upgrade-item {
+  list-style: none;
+  margin: 15px 0;
+  padding: 0;
+}
+
+/* Better button heights and padding */
+.buy-gadget {
+  height: 90px;
+  padding: 10px 20px 10px 90px;
+  border-radius: 45px;
+}
+
+.trophy-display {
+  height: 85px;
+  padding: 10px 20px 10px 90px;
+  border-radius: 42.5px;
+}
+
+.stat-display {
+  height: 75px;
+  padding: 10px 15px 10px 85px;
+  border-radius: 37.5px;
+}
+
+.buy-prestige-upgrade {
+  height: 90px;
+  padding: 10px 20px 10px 90px;
+  border-radius: 45px;
+}
+
+/* Larger, more prominent icons */
+.icon,
+.trophy-icon,
+.prestige-upgrade-icon {
+  width: 65px;
+  height: 65px;
+  left: 12px;
+  top: 12.5px;
+  border-radius: 32.5px;
+  font-size: 38px;
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  left: 12px;
+  top: 7.5px;
+  border-radius: 30px;
+  font-size: 35px;
+}
+
+/* Better text sizing */
+.gadget-name,
+.trophy-name,
+.buy-prestige-upgrade .upgrade-name {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.gadget-cost,
+.buy-prestige-upgrade .upgrade-cost {
+  font-size: 15px;
+  color: #0068b5;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0068b5;
+  line-height: 1.2;
+}
+
+/* Small text */
+.buy-gadget small,
+.trophy-desc small,
+.buy-prestige-upgrade .upgrade-desc small,
+.upgrade-locked-msg small {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.3;
+  display: block;
+}
+
+/* Section headers spacing */
+.oreo-font {
+  margin: 25px auto 20px;
+  padding: 0 20px;
+}
+
+/* Better spacing between sections */
+.shop-container > div {
+  margin-bottom: 35px;
+}
+
+.shop-container > div:last-child {
+  margin-bottom: 20px;
+}
+
+/* Gadgets count badge - better positioning */
+.gadgets-count {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0068b5;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 35px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================
+   RESPONSIVE SIZING
+   ============================================= */
+
+@media only screen and (max-width: 900px) {
+  .automation-store,
+  .trophies-list,
+  .stats-list,
+  .prestige-upgrades-list {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .automation-item,
+  .trophy-item,
+  .stat-item,
+  .prestige-upgrade-item {
+    margin: 12px 0;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .automation-store,
+  .trophies-list,
+  .stats-list,
+  .prestige-upgrades-list {
+    width: 100%;
+  }
+  
+  .automation-item,
+  .trophy-item,
+  .stat-item,
+  .prestige-upgrade-item {
+    margin: 10px 0;
+  }
+  
+  .buy-gadget,
+  .buy-prestige-upgrade {
+    height: 85px;
+    padding: 10px 15px 10px 85px;
+  }
+  
+  .trophy-display {
+    height: 80px;
+    padding: 10px 15px 10px 85px;
+  }
+  
+  .stat-display {
+    height: 70px;
+    padding: 8px 12px 8px 80px;
+  }
+  
+  .icon,
+  .trophy-icon,
+  .prestige-upgrade-icon {
+    width: 60px;
+    height: 60px;
+    left: 12px;
+    font-size: 35px;
+  }
+  
+  .stat-icon {
+    width: 55px;
+    height: 55px;
+    left: 10px;
+    font-size: 32px;
+  }
+  
+  .gadget-name,
+  .trophy-name,
+  .buy-prestige-upgrade .upgrade-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .gadget-cost,
+  .buy-prestige-upgrade .upgrade-cost,
+  .stat-value {
+    font-size: 14px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .buy-gadget small,
+  .trophy-desc small,
+  .buy-prestige-upgrade .upgrade-desc small,
+  .upgrade-locked-msg small {
+    font-size: 11px;
+  }
+  
+  .gadgets-count {
+    padding: 6px 12px;
+    font-size: 14px;
+    right: 12px;
+  }
+  
+  .oreo-font {
+    font-size: 20px;
+    margin: 20px auto 15px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .buy-gadget,
+  .buy-prestige-upgrade {
+    height: 80px;
+    padding: 8px 12px 8px 80px;
+  }
+  
+  .trophy-display {
+    height: 75px;
+    padding: 8px 12px 8px 80px;
+  }
+  
+  .stat-display {
+    height: 65px;
+    padding: 8px 10px 8px 75px;
+  }
+  
+  .icon,
+  .trophy-icon,
+  .prestige-upgrade-icon {
+    width: 55px;
+    height: 55px;
+    left: 10px;
+    top: 12.5px;
+    font-size: 32px;
+  }
+  
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 7.5px;
+    font-size: 28px;
+  }
+  
+  .gadget-name,
+  .trophy-name,
+  .buy-prestige-upgrade .upgrade-name {
+    font-size: 15px;
+  }
+  
+  .gadget-cost,
+  .buy-prestige-upgrade .upgrade-cost,
+  .stat-value {
+    font-size: 13px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+  
+  .buy-gadget small,
+  .trophy-desc small,
+  .buy-prestige-upgrade .upgrade-desc small {
+    font-size: 10px;
+  }
+  
+  .gadgets-count {
+    padding: 5px 10px;
+    font-size: 13px;
+    right: 10px;
+  }
+  
+  .oreo-font {
+    font-size: 18px;
+    margin: 15px auto 12px;
+  }
+}
