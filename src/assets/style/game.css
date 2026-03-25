@@ -1463,3 +1463,207 @@ h2 {
     font-size: 14px;
   }
 }
+
+/* Prestige Shop Styles */
+.prestige-shop {
+  background: linear-gradient(135deg, #fefdfb 0%, #fff9f0 100%);
+  border: 2px solid #ffd700;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+}
+
+.prestige-shop-locked {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border: 2px solid #ccc;
+  border-radius: 16px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: center;
+  color: #666;
+}
+
+.shop-lock-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+.prestige-shop-locked p {
+  font-family: 'Pacifico', cursive;
+  font-size: 16px;
+  margin: 0;
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ffd700;
+}
+
+.shop-header h3 {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+  color: #423939;
+}
+
+.prestige-points-display {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Pacifico', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #423939;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+.shop-upgrades {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prestige-upgrade {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.prestige-upgrade:hover:not(.disabled):not(.owned) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #ffd700;
+}
+
+.prestige-upgrade.owned {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+  border-color: #4caf50;
+  opacity: 0.8;
+}
+
+.prestige-upgrade.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prestige-upgrade.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.upgrade-icon {
+  font-size: 36px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.upgrade-info {
+  flex: 1;
+}
+
+.upgrade-name {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #423939;
+  margin-bottom: 4px;
+}
+
+.upgrade-description {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.upgrade-requirement {
+  font-size: 11px;
+  color: #f44336;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.upgrade-action {
+  min-width: 100px;
+  text-align: right;
+}
+
+.buy-upgrade-btn {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  color: #423939;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+}
+
+.buy-upgrade-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+}
+
+.buy-upgrade-btn:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.owned-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Mobile responsive for prestige shop */
+@media only screen and (max-width: 749px) {
+  .prestige-shop {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .shop-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .shop-header h3 {
+    font-size: 20px;
+  }
+  
+  .prestige-upgrade {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .upgrade-icon {
+    font-size: 32px;
+  }
+  
+  .upgrade-action {
+    width: 100%;
+  }
+  
+  .buy-upgrade-btn {
+    width: 100%;
+  }
+}

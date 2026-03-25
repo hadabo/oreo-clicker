@@ -40,6 +40,34 @@ export const ACHIEVEMENTS = [
     description: 'Click 500 times',
     condition: (state) => state.clicks >= 500,
     icon: '👆'
+  },
+  {
+    id: 'first_prestige',
+    name: 'Born Again',
+    description: 'Prestige for the first time',
+    condition: (state) => state.prestige?.level >= 1,
+    icon: '⭐'
+  },
+  {
+    id: 'prestige_master',
+    name: 'Prestige Master',
+    description: 'Reach prestige level 5',
+    condition: (state) => state.prestige?.level >= 5,
+    icon: '🌟'
+  },
+  {
+    id: 'first_upgrade',
+    name: 'Permanent Power',
+    description: 'Purchase your first prestige upgrade',
+    condition: (state) => (state.prestigeUpgrades?.length || 0) >= 1,
+    icon: '💎'
+  },
+  {
+    id: 'upgrade_collector',
+    name: 'Upgrade Collector',
+    description: 'Own 5 prestige upgrades',
+    condition: (state) => (state.prestigeUpgrades?.length || 0) >= 5,
+    icon: '🎁'
   }
 ]
 

@@ -1,0 +1,124 @@
+import React from 'react'
+
+const PRESTIGE_UPGRADES = [
+  {
+    id: 'click_power_1',
+    name: 'Enhanced Clicks',
+    description: 'Double your click power',
+    cost: 1,
+    effect: { type: 'click_multiplier', value: 2 },
+    icon: '👆'
+  },
+  {
+    id: 'click_power_2',
+    name: 'Super Clicks',
+    description: '5x click power',
+    cost: 3,
+    effect: { type: 'click_multiplier', value: 5 },
+    requires: 'click_power_1',
+    icon: '✨'
+  },
+  {
+    id: 'production_1',
+    name: 'Efficient Production',
+    description: '+25% production speed',
+    cost: 2,
+    effect: { type: 'production_boost', value: 1.25 },
+    icon: '⚡'
+  },
+  {
+    id: 'production_2',
+    name: 'Mass Production',
+    description: '+50% production speed',
+    cost: 5,
+    effect: { type: 'production_boost', value: 1.5 },
+    requires: 'production_1',
+    icon: '🚀'
+  },
+  {
+    id: 'starting_boost',
+    name: 'Head Start',
+    description: 'Start with 1000 Oreos after prestige',
+    cost: 2,
+    effect: { type: 'starting_oreos', value: 1000 },
+    icon: '🎁'
+  },
+  {
+    id: 'golden_luck',
+    name: 'Golden Fortune',
+    description: 'Golden Oreos appear 2x more often',
+    cost: 4,
+    effect: { type: 'golden_spawn_rate', value: 2 },
+    icon: '🌟'
+  }
+]
+
+function PrestigeShop({ prestige, prestigeUpgrades = [], onPurchase }) {
+  if (!prestige || prestige.level === 0) {
+    return (
+      <div className="prestige-shop-locked">
+        <div className="shop-lock-icon">🔒</div>
+        <p>Prestige once to unlock this shop!</p>
+      </div>
+    )
+  }
+
+  const canAfford = (cost) => prestige.points >= cost
+  const isOwned = (id) => prestigeUpgrades.includes(id)
+  const meetsRequirements = (upgrade) => {
+    if (!upgrade.requires) return true
+    return isOwned(upgrade.requires)
+  }
+
+  return (
+    <div className="prestige-shop">
+      <div className="shop-header">
+        <h3>⭐ Prestige Shop</h3>
+        <div className="prestige-points-display">
+          {prestige.points} Point{prestige.points !== 1 ? 's' : ''} Available
+        </div>
+      </div>
+      <div className="shop-upgrades">
+        {PRESTIGE_UPGRADES.map(upgrade => {
+          const owned = isOwned(upgrade.id)
+          const canBuy = canAfford(upgrade.cost) && meetsRequirements(upgrade)
+          const locked = !meetsRequirements(upgrade)
+
+          return (
+            <div 
+              key={upgrade.id}
+              className={`prestige-upgrade ${owned ? 'owned' : ''} ${!canBuy ? 'disabled' : ''} ${locked ? 'locked' : ''}`}
+            >
+              <div className="upgrade-icon">{upgrade.icon}</div>
+              <div className="upgrade-info">
+                <div className="upgrade-name">{upgrade.name}</div>
+                <div className="upgrade-description">{upgrade.description}</div>
+                {locked && upgrade.requires && (
+                  <div className="upgrade-requirement">
+                    Requires: {PRESTIGE_UPGRADES.find(u => u.id === upgrade.requires)?.name}
+                  </div>
+                )}
+              </div>
+              <div className="upgrade-action">
+                {owned ? (
+                  <span className="owned-badge">✓ Owned</span>
+                ) : (
+                  <button 
+                    className="buy-upgrade-btn"
+                    onClick={() => onPurchase(upgrade.id)}
+                    disabled={!canBuy}
+                  >
+                    {upgrade.cost} Point{upgrade.cost !== 1 ? 's' : ''}
+                  </button>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default PrestigeShop
+export { PRESTIGE_UPGRADES }

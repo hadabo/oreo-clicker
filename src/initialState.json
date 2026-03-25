@@ -76,6 +76,7 @@
     "totalEarned": 0,
     "multiplier": 1.0
   },
+  "prestigeUpgrades": [],
   "trophies": [
     {
       "type": "start",

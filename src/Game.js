@@ -9,6 +9,7 @@ import ErrorBoundary from './components/ErrorBoundary'
 import Settings from './components/Settings'
 import ProgressIndicator from './components/ProgressIndicator'
 import PrestigeButton from './components/PrestigeButton'
+import PrestigeShop from './components/PrestigeShop'
 
 // Import lazy-loaded components
 import { LazyGadgetsList, LazyTrophies, LazyStats } from './components/LazyLoadedComponents'
@@ -107,6 +108,16 @@ function Oreo() {
     announce('You have prestiged! Enjoy your multiplier boost!')
   }
 
+  const handleBuyPrestigeUpgrade = (upgradeId) => {
+    const { PRESTIGE_UPGRADES } = require('./components/PrestigeShop')
+    const upgrade = PRESTIGE_UPGRADES.find(u => u.id === upgradeId)
+    if (!upgrade) return
+    
+    actions.buyPrestigeUpgrade(upgrade)
+    playSound('achievement')
+    announce(`Purchased ${upgrade.name}!`)
+  }
+
   return (
     <ErrorBoundary>
       <div className={`oreo-clicker ${!settings.animationsEnabled ? 'animations-disabled' : ''}`}>
@@ -124,6 +135,13 @@ function Oreo() {
             <Settings onImportSave={() => window.location.reload()} initialState={initialState} />
             <ErrorBoundary>
               <PrestigeButton state={state} onPrestige={handlePrestige} />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <PrestigeShop 
+                prestige={state.prestige} 
+                prestigeUpgrades={state.prestigeUpgrades}
+                onPurchase={handleBuyPrestigeUpgrade}
+              />
             </ErrorBoundary>
             <ErrorBoundary>
               <ProgressIndicator state={state} unlockedAchievements={achievements.unlockedAchievements} />

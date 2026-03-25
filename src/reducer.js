@@ -1,12 +1,14 @@
 import crepto from './helpers/crypto'
 import { STORAGE_KEY, MAX_MESSAGES, OREO_CLICK_VALUE } from './constants'
 import { calculatePrestigePoints, calculatePrestigeMultiplier } from './utils/prestige'
+import { applyPrestigeUpgrades } from './utils/prestigeUpgrades'
 
 function reducer(state, action) {
   switch (action.type) {
     case 'GET_OREO':
       const prestigeClickMultiplier = state.prestige?.multiplier || 1.0
-      const clickValue = OREO_CLICK_VALUE * prestigeClickMultiplier
+      const upgradeClickMultiplier = applyPrestigeUpgrades(state, 'click')
+      const clickValue = OREO_CLICK_VALUE * prestigeClickMultiplier * upgradeClickMultiplier
       return {
         ...state,
         oreos: state.oreos + clickValue,
@@ -16,7 +18,8 @@ function reducer(state, action) {
     case 'BUY_GADGET':
       const baseSpeed = oreosPerSecond(action.newGadgets)
       const buyMultiplier = state.prestige?.multiplier || 1.0
-      const speed = baseSpeed * buyMultiplier
+      const productionBoost = applyPrestigeUpgrades(state, 'production')
+      const speed = baseSpeed * buyMultiplier * productionBoost
       return {
         ...state,
         oreos: state.oreos - action.totalCost,
@@ -34,7 +37,8 @@ function reducer(state, action) {
 
     case 'TICK':
       const tickMultiplier = state.prestige?.multiplier || 1.0
-      const oreosPerTick = oreosPerSecond(state.gadgets) * tickMultiplier
+      const tickProductionBoost = applyPrestigeUpgrades(state, 'production')
+      const oreosPerTick = oreosPerSecond(state.gadgets) * tickMultiplier * tickProductionBoost
       const newMessages = getUpdatedMessages(state.messages)
       const elapsedTime = action.payload?.elapsedTime || 0
       
@@ -70,8 +74,10 @@ function reducer(state, action) {
       }
       
       // Reset to initial state but keep prestige and trophies
+      const keptUpgrades = state.prestigeUpgrades || []
+      const startingOreos = applyPrestigeUpgrades({ prestigeUpgrades: keptUpgrades }, 'starting_oreos')
       const resetState = {
-        oreos: 0,
+        oreos: startingOreos,
         clicks: 0,
         gadgetsCount: 0,
         speed: 0,
@@ -83,12 +89,41 @@ function reducer(state, action) {
           time: 10
         }],
         prestige: newPrestigeState,
+        prestigeUpgrades: keptUpgrades,
         trophies: state.trophies,
         autoSaveTimeout: state.autoSaveTimeout
       }
       
       saveProgress(resetState)
       return resetState
+
+    case 'BUY_PRESTIGE_UPGRADE':
+      const currentPoints = state.prestige?.points || 0
+      const upgrade = action.payload.upgrade
+      const alreadyOwned = (state.prestigeUpgrades || []).includes(upgrade.id)
+      
+      if (alreadyOwned || currentPoints < upgrade.cost) return state
+      
+      const updatedPrestige = {
+        ...state.prestige,
+        points: currentPoints - upgrade.cost
+      }
+      
+      const updatedUpgrades = [...(state.prestigeUpgrades || []), upgrade.id]
+      
+      const stateWithUpgrade = {
+        ...state,
+        prestige: updatedPrestige,
+        prestigeUpgrades: updatedUpgrades,
+        messages: [...state.messages, {
+          type: 'success',
+          text: `Purchased ${upgrade.name}!`,
+          time: 5
+        }]
+      }
+      
+      saveProgress(stateWithUpgrade)
+      return stateWithUpgrade
 
     default:
       return state

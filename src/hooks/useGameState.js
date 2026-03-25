@@ -62,13 +62,21 @@ export function useGameState(initialState) {
     })
   }, [dispatch])
 
+  const buyPrestigeUpgrade = useCallback((upgrade) => {
+    dispatch({
+      type: 'BUY_PRESTIGE_UPGRADE',
+      payload: { upgrade }
+    })
+  }, [dispatch])
+
   return {
     state,
     actions: {
       getOreo,
       buyGadget,
       tick,
-      prestige
+      prestige,
+      buyPrestigeUpgrade
     }
   }
 }

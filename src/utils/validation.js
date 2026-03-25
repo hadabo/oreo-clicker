@@ -55,6 +55,7 @@ export function sanitizeGameState(state, fallback) {
       points: Math.max(0, Math.floor(state.prestige.points) || 0),
       totalEarned: Math.max(0, Math.floor(state.prestige.totalEarned) || 0),
       multiplier: Math.max(1.0, state.prestige.multiplier || 1.0)
-    } : { level: 0, points: 0, totalEarned: 0, multiplier: 1.0 }
+    } : { level: 0, points: 0, totalEarned: 0, multiplier: 1.0 },
+    prestigeUpgrades: Array.isArray(state.prestigeUpgrades) ? state.prestigeUpgrades : []
   }
 }
